@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirror Mirror - ACE Quiz</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="body">
+    <div class="container">
+        <div class="page-title">
+            <h1>Adverse Childhood Experiences (ACEs) Quiz</h1>
+        </div>
+
+        <div id="quiz-instructions">
+            <p>How many ACEs do you have? <br>
+                Find out the number of ACEs you've experienced according to the original ACEs study. <br>
+                Please anser "yes" or "no" based on whether or not you experienced the following events prior to <br>
+                your 18th birthday. Once all questions have been answered, click the "What's My Score?" button. <br>
+                You will be redirected to the next page which displays your score and ACE statistics!</p>
+        </div>
+
+        <!-- make ace quiz a form!-->
+        <div id="quiz-box">
+            <form action="" method="GET">
+                <ol id="quiz-questions">
+                    <!--Question 1:-->
+                    <li><label for="Q1">Did you feel that you didn't have enough to eat, had to wear dirty clothes, or had no one to protect you?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q1" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q1" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>  
+                    
+                    <!--Question 2:-->
+                    <li><label for="Q2">Did you lose a parent through divorce, abandonment, death, or other reason?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q2" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q2" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 3:-->
+                    <li><label for="Q3">Did you live with anyone who was depressed, mentally ill, or attempted suicide?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q3" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q3" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 4:-->
+                    <li><label for="Q4">Did you live with anyone who had a problem with drinking or using drugs, including prescription drugs?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q4" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q4" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 5:-->
+                    <li><label for="Q5">Did your parents or adults in your home ever hit, punch, beat, or threaten to harm each other?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q5" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q5" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 6:-->
+                    <li><label for="Q6">Did you live with anyone who went to jail or prison?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q6" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q6" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 7:-->
+                    <li><label for="Q7">Did a parent or adult in your home ever swear at you, insult you, or put you down?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q7" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q7" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 8:-->
+                    <li><label for="Q8">Did a aprent of adult in your home ever hit, beat, kick, or physically hurt you in any way?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q8" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q8" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 9:-->
+                    <li><label for="Q9">Did you fel that no one in your family loved you or thought you were special?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q9" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q9" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!--Question 10:-->
+                    <li><label for="Q10">Did you experience unwanted sexual contact- such as: fondling and/or oral/anal/vaginal intercourse/penetration?</label></li>
+                    <div class="yes-btn">
+                        <input type="radio" name="Q10" value="yes">
+                        <label for="yes">Yes</label><br>
+                    </div>
+                    <div class="no-btn">
+                        <input type="radio" name="Q10" value="no">
+                        <label for="no">No</label><br>
+                    </div>
+                    <br>
+                    <br>
+                </ol>
+                <!-- "<input type="submit" value="What's My Score? id="calculate-score-btn"> once logic has been applied! -->
+                <!-- so that it calculates the score AND takes user to next page-->
+                <button id="calculate-score-btn"><a href="/score_stats.html" id="calculate-score">What's My Score?</a></bu>
+            </form>
+        </div>
+
+        <div>
+            <div class="carousel"></div>
+        </div>
+
+        <div id="ace-quiz-home-btn">
+            <a href="/home.html">Home</a>
+        </div>
+    </div>
+</body>
+</html>
