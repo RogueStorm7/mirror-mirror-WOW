@@ -1,0 +1,313 @@
+/* Static styles across each page */
+/* Makes whole page background a specific color */
+.body {
+    background-color: paleturquoise;
+}
+/* Allows for use of grid layout */
+.container {
+    display: grid;
+    grid: auto auto / auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+/* Positions and styles page titles/H1 tags */
+.page-title {
+    grid-row: 1;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-family: "Papyrus", fantasy;
+}
+/*----------------------------*/
+
+
+/* HOME.html */
+/* Styling for image with button overlay */
+/* "#btn-over-img" is container to position img & btn */
+#btn-over-img {
+    grid-row: 2;
+    grid-column: 4;
+}
+/* Styles btn and places in middle of img */
+ .begin-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 16px;
+    width: 150px;
+    padding: 12px ;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #999;
+    text-decoration: none;
+    font-family: "Papyrus", fantasy;
+    color: black;
+}
+ .begin-btn:hover {
+    background-color: #934;
+}
+/* Site catchy phrase */
+#phrase {
+    grid-row: 3;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 20px;
+}
+#trigger-warning {
+    grid-row: 4;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 24px;
+    border-style: solid;
+    border-color: yellow;
+}
+/*----------------------------*/
+
+
+/* WELCOME.html */
+/* "#ace-box" is to position ACE info */
+#ace-box {
+  grid-row: 2;
+  grid-column: 4 / -1;
+  font-size: 17px;
+}
+/* Sets up paper-like fact sheet */
+#ace-explanation {   
+    text-align: center;
+    background-color: lightgray;
+    padding: 5px;
+    height: 430px;
+    width: 500px;
+    border-style: solid;
+}
+/* Unordered list with separate alignment from rest of fact sheet */
+#ace-list{
+    text-align: left;
+}
+/* Positions text that encourages folks to take quiz */
+#quiz-nudge {
+    grid-row: 3;
+    grid-column: 1 / 7;
+    text-align: center;
+}
+/* Positions "Take Quiz" btn */
+.quiz-btn {
+    grid-row: 4;
+    grid-column: 1 / 7;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    color: black;
+}
+/* welcome.html home btn */
+#welcome-home-btn {
+    grid-row: 5;
+}
+/*----------------------------*/
+
+
+/* ACE-QUIZ.html */
+/* Positions quiz instructions*/
+#quiz-instructions {
+    grid-row: 2;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 17px;
+}
+/* Positions ACE quiz on page */
+#quiz-box {
+    grid-row: 3;
+    grid-column: 3 / 5;
+    border-style: solid;
+    font-size:18px;
+    text-align: center;
+}
+/* Ordered list with separate alignment from rest of quiz-box */
+#quiz-questions {
+    text-align: left;
+}
+/* Positions radio btns next to each other */
+.no-btn, .yes-btn {
+    display: inline-block;
+}
+/* Styles "What's My Score?" btn*/
+#calculate-score-btn {
+    border-radius: 30px;
+}
+/* Removes underline from "What's My Score?" btn and changed font color to black*/
+#calculate-score {
+    text-decoration: none;
+    color: black;
+}
+/* ace-quiz.html home btn*/
+#ace-quiz-home-btn {
+    grid-row: 4;
+}
+/*----------------------------*/
+
+
+/* SCORE_STATS.html */
+#score-over-img {
+    grid-row: 1;
+    grid-column: 1 / 7;
+}
+#ace-score {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 14px;
+    border: none;
+    text-decoration: none;
+    font-family: "Papyrus", fantasy;
+    color: black;
+    border-style: solid;
+    border-radius: 20px;
+    width: 170px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    background-color: rgb(157, 175, 192);
+}
+#ace-antidote {
+    grid-row: 2;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 17px;
+}
+#statistics-title {
+    grid-row: 3;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-family: "Papyrus", fantasy;
+}
+
+.stat-box{
+    grid-row: 4;
+    border-style: solid;
+    padding: 20px;
+    height: 130px;
+    width: 130px;
+    text-align: left;
+    display: inline-block;
+}
+
+.stat-img {
+    grid-row: 5;
+    display: inline-block;
+}
+#ace-women {
+    margin-left: 25%;
+}
+#ace-men {
+    margin-right: 25%;
+}
+
+#ace-2slgbtqia {
+    grid-row: 6;
+    margin-left: 50%;
+}
+#next-steps {
+    grid-row: 7;
+    grid-column: 1 / 7;
+    text-align: center;
+    font-size: 18px;
+}
+#whats-next {
+    font-family: "Papyrus", fantasy;
+}
+.resource-btn {
+    grid-row: 8;
+    grid-column: 1 / 7;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    color: black;
+}
+#score-stats-home-btn {
+    grid-row: 9;
+}
+/*----------------------------*/
+
+
+/* RESOURCES.html */
+#navbar-box {
+    grid-row: 1;
+    margin-left: 40%;
+}
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #999;
+    width: 815px;
+  }
+.nav-item {
+      display: inline-block;
+      border-right: 1px solid darkorchid;
+  }
+.nav-item .nav-link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+}
+.nav-link:hover {
+    background-color: #934;
+}
+#reassurance-text {
+    grid-row: 2;
+    margin-left: 45%;
+    margin-top: 5%;
+    text-align: center;
+    border-style: dotted;
+    border-color: darkorchid;
+    width: 700px;
+    font-size: 18px;
+}
+.review-comment-btn {
+    grid-row: 4;
+    grid-column: 1 / 7;
+    text-align: center;
+    border-radius: 30px;
+    text-decoration: none;
+    color: black;
+}
+#resources-home-btn {
+    grid-row: 5;
+}
+/*----------------------------*/
+
+
+/* REVIEWS_COMMENTS.html */
+#reviews {
+    grid-row: 2;
+    grid-column: 1 / 4;
+    text-align: center;    
+}
+#comments {
+    grid-row: 2;
+    grid-column: 4 / 7;
+    text-align: center;
+}
+#reviews, #comments {
+    font-family: "Papyrus", fantasy;
+}
+#reviews-comments-home-btn {
+    grid-row: 1;
+    grid-column: 6 / 7;
+}
+.display-box {
+    border: solid rgb(164, 163, 160);
+    height: 700px;
+}
+#contact-us-btn{
+    grid-row: 3;
+    grid-column: 1 / 4;
+    text-align: center;
+}

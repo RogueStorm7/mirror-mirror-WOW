@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirror Mirror - Score & Stats</title>
+    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/style.css">
+</head>
+
+<!--Implement bootstrap for responsiveness across window/device sizes? this one is all wonky!~ and other pages too lol /: -->
+<body class="body">
+    <div class="container">
+        <div id="score-over-img">
+            <img src="/wowproject/mirrormirror/templates/images/tree-reflect.jpg" height="300px" width="100%" alt="Tree reflected in pool of water">
+            <p id="ace-score"><b>Your ACE score is: <!--{{ django quiz logic for score }}--></b></p>
+        </div>
+
+        <div id="ace-antidote">
+            <br>
+            <p>One of the best antidotes to childhood trauma is safe and healthy relationships. <br>
+                Social support helps build resilience- the ability to bounce back from difficulty. <br>
+                <a href="https://blog.bcbsnc.com/2021/02/how-childhood-trauma-affects-adult-health-and-what-you-can-do-about-it/">How You Can Combat the Affects of ACEs</a></p>
+        </div>
+
+        <div id="statistics-title">
+            <br>
+            <h2>Statistics</h2>
+        </div>
+
+        <div class="stat-box" id="stat-box1">
+            <p>1 in 6 people experienced 4 or more types of ACEs.</p>
+        </div>
+        <div class="stat-box" id="stat-box2">
+            <p>3x the risk of depression for those with an ACE score of 4+.</p>
+        </div>
+        <div class="stat-box" id="stat-box3">
+            <p>5 out of 10 leading causes of death are associated with ACEs.</p>
+        </div>
+        <div class="stat-box" id="stat-box4">
+            <p>Preventing ACEs could reduce the # of adults with depression by as much as 44%.</p>
+        </div>
+        
+        <div class="stat-img" id="ace-women">
+            <br>
+            <br>
+            <img src="/wowproject/mirrormirror/templates/images/ace-women.png" height="400px" width="400px" alt="ACE prevalence statistics in cisgender women">
+        </div>
+        <div class="stat-img" id="ace-men">
+            <br>
+            <br>
+            <img src="/wowproject/mirrormirror/templates/images/ace-men.png" height="400px" width="400px" alt="ACE prevalence statistics in cisgender men">
+        </div>
+        <div id="ace-2slgbtqia">
+            <br>
+            <br>
+            <img src="/wowproject/mirrormirror/templates/images/ace-2slgtbqia.png" height="350px" width="600px" alt="Prevalence of ACE score by sexual orientation">
+        </div>
+
+        <div id="next-steps">
+            <br>
+            <br>
+            <h2 id="whats-next">What's Next?</h2>
+            <p>It is never too late to get help. From therapy to community support, you will find a range of tools <br />
+                at your disposal on our resources page!</p>
+        </div>
+
+        <div class="resource-btn">
+            <button type="button" class="resource-btn"><a href="/wowproject/mirrormirror/templates/resources.html" class="resource-btn">Resources</a></button>
+        </div>
+
+        <div id="score-stats-home-btn">
+            <a href="/wowproject/mirrormirror/templates/home.html">Home</a>
+        </div>
+    </div>
+</body>
+</html>
