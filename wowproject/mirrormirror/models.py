@@ -1,3 +1,4 @@
+import re
 from django.db import models
 import datetime
 
@@ -9,5 +10,3 @@ class UserComments(models.Model):
     user_name = models.TextField(max_length=50,help_text="Name", default=True)
     def __str__(self) -> str:
             return self.user_comment
-
-
