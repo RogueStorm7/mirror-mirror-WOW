@@ -5,7 +5,7 @@ from mirrormirror.models import *
 
 
 class CommentForm(forms.ModelForm):
-    commentor_name = forms.CharField(widget=forms.Textarea(attrs={'rows':1}))
+    commentor_name = models.CharField(max_length=255)
     description = forms.CharField(widget=forms.Textarea(attrs={'rows':5}))
     
     

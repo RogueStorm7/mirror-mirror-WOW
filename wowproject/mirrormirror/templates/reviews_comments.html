@@ -1,3 +1,5 @@
+</form>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +57,31 @@
             <div class="col" id="comments-border">
                 <h1 class="page-title">Comments</h1>
                 <div class="display-box">
-                    <!-- Where content populates-->
+
+                   <br>
+                   <h4>Leave a Personal Comment</h4>
+                   <br>
+                   <form action="{% url 'comment_list' %}" method="POST">
+                       {% csrf_token %}
+                       {{ form }}
+                       <br>
+                       <input type="submit" name="create" value="Create" />
+                   </form>
+                   
+                   <br>
+                   <br>
+                   {% for comment in comments %}
+                       <div>
+                           <p style="color:#808080">User Comment # {{ forloop.counter }} | {{ comment.created_at}}</p>
+                           <a href="{% url 'updateordelete' comment.id %}"> {{ comment.commentor_name }} </a>
+                           <p> {{ comment.description }} </p>      
+                           <br>
+                           <br>
+                            
+                       </div>
+                   
+                   {% endfor %}
+            
                 </div>
             </div>
         </div>
