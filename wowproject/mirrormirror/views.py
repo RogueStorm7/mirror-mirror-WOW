@@ -14,7 +14,7 @@ class UserCommentListView(View):
         form = CommentForm()
 
         return render(
-            request=request, template_name = 'comment.html', context = {'comments': comments, 'form': form}
+            request=request, template_name = 'reviews_comments.html', context = {'comments': comments, 'form': form}
         )
 
     def post(self, request):
