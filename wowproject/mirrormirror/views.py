@@ -58,31 +58,31 @@ class UserCommentDetailView(View):
 
 
 
-# # Create your views here.
-# class HomeView(TemplateView):
-#     template_name='home.html'
+# Create your views here.
+class HomeView(TemplateView):
+    template_name='home.html'
 
 
-# class WelcomeView(TemplateView):
-#     template_name='welcome.html'
+class WelcomeView(TemplateView):
+    template_name='welcome.html'
 
 
-# class AceQuizView(View):
-#     def get(self, request):
-#         return render(
-#             request=request,
-#             # render ace-quiz.html page
-#             template_name='ace-quiz.html', 
+class AceQuizView(View):
+    def get(self, request):
+        return render(
+            request=request,
+            # render ace-quiz.html page
+            template_name='ace-quiz.html', 
 
-#         )
+        )
 
-# class ScoreStatsView(View):
-#     def get(self, request):
-#         return render(
-#             request=request,
-#             template_name='score_stats.html', 
+class ScoreStatsView(View):
+    def get(self, request):
+        return render(
+            request=request,
+            template_name='score_stats.html', 
 
-#         )
+        )
 
 
 # class ResourceView(View):
