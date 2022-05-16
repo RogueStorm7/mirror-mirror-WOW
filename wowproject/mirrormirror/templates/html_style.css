@@ -1,0 +1,240 @@
+/* Static styles across each page */
+/* Makes whole page background a specific color */
+.body {
+    background-color: paleturquoise;
+}
+/* Positions and styles page titles */
+.page-title {
+    text-align: center;
+    font-family: "Papyrus", fantasy;
+    padding-top: 10px;
+}
+/* "Home" link */
+.home-link {
+    text-decoration: none;
+    color: lightseagreen;
+}
+/*----------------------------*/
+
+
+/* HOME.html */
+/* Styling for image with button overlay */
+/* Positions sky-mirror img */
+#button-over-img {
+   text-align: center;
+}
+/* Styles "Click to Begin" button and places in middle of img */
+ .begin-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 16px;
+    width: 150px;
+    padding: 12px ;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #999;
+    text-decoration: none;
+    font-family: "Papyrus", fantasy;
+    color: black;
+}
+ .begin-button:hover {
+    background-color: lavender;
+}
+/* Site catchy phrase */
+#phrase {
+    text-align: center;
+    font-size: 20px;
+}
+/* Trigger warning text */
+#trigger-warning {
+    text-align: center;
+    font-size: 18px;
+}
+/* Trigger warning colored box */
+#tw-box {
+    border-style: solid;
+    border-color: palegoldenrod;
+    background-color: palegoldenrod;
+}
+/*----------------------------*/
+
+
+/* WELCOME.html */
+/* Sets up paper-like ACE breakdown sheet */
+#ace-fact-sheet {
+    font-size: 17px;
+    background-color: lightgray;
+    padding: 5px;
+    border-style: solid;
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+/* Unordered list with separate alignment from rest of fact sheet */
+#ace-list{
+    text-align: left;
+}
+/* Positions text that encourages folks to take quiz */
+#quiz-nudge {
+    text-align: center;
+}
+/* Positions "Take Quiz" btn */
+.quiz-btn {
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    color: black;
+}
+/*----------------------------*/
+
+
+/* ACE-QUIZ.html */
+/* Positions quiz instructions*/
+#quiz-instructions {
+    text-align: center;
+    font-size: 17px;
+}
+/* Positions ACE quiz on page */
+.quiz-box {
+    border-style: dotted;
+    border-color: blueviolet;
+    padding: 10px;
+    margin: 0 auto;
+    width: 800px;
+}
+.question{
+    font-weight: 600;
+  }
+.answers {
+      margin-bottom: 20px;
+  }
+#submit, #stats{
+    font-family: sans-serif;
+    font-size: 17px;
+    background-color: #999;
+    color: #fff;
+    border: 0px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    color: black;
+  }
+#submit:hover{
+    background-color: lavender;
+  }
+.quiz-submit, .take-to-stats {
+    text-align: center;
+}
+.score {
+    text-align: center;
+    border-style: solid;
+
+}
+/*----------------------------*/
+
+
+/* SCORE_STATS.html */
+/* Positions score over img */
+/* #results{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-family: "Papyrus", fantasy;
+    color: black;
+    border-style: solid;
+    border-radius: 20px;
+    width: 170px;
+    padding: 15px 20px 15px 5px;
+    background-color: rgb(157, 175, 192);
+} */
+/* Styles bit of text detailing remedy/ies to ACEs */
+#ace-antidote {
+    text-align: center;
+    font-size: 17px;
+}
+/* Styles stat boxes */
+.stat-box{
+    border-style: solid;
+    padding: 20px;
+    margin: 50px;
+    height: 130px;
+    width: 130px;
+    text-align: left;
+}
+/* Positions stat images in center */
+.stat-img {
+    text-align: center;
+}
+/* Styles bit of text directing user to next page */
+#next-steps {
+    text-align: center;
+    font-size: 18px;
+}
+/* Styles "Resources" btn */
+.resource-btn {
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    color: black;
+}
+/*----------------------------*/
+
+
+/* RESOURCES.html */
+/* Centers dropdown btns on page */
+.dropdown {
+    text-align: center;
+}
+/* Styles bit of text praising the act of seeking help */
+#reassurance-text {
+    margin-top:4%;
+    text-align: center;
+    border-style: inset;
+    border-color: darkorchid;
+    font-size: 18px;
+}
+/* Styles "Leave Review/Comment" btn */
+.review-comment-btn {
+    text-align: center;
+    border-radius: 30px;
+    text-decoration: none;
+    color: black;
+}
+/*----------------------------*/
+
+
+/* REVIEWS_COMMENTS.html */
+#resource-review-btn, #website-review-btn, #add-comment-btn, #home-btn {
+    padding-top: 15px;
+}
+#resource-review-btn, #add-comment-btn {
+    text-align: left;
+}
+#home-btn, #website-review-btn {
+    text-align: right;
+}
+ #reviews-border{
+    border-right-style: solid;
+    height: 600px;
+}
+ #comments-border {
+    border-left-style: solid;
+    height: 600px;
+}
+#contact-us-div {
+    text-align: center;
+    border-right-style: solid;
+}
+#spacer-div {
+    text-align: center;
+    border-left-style: solid;
+}
+
