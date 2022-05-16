@@ -64,6 +64,6 @@ img {vertical-align: middle;}
   .text {font-size: 11px}
 }
 
-#carousel-1-caption {
-    text-align: center;
+#carousel-1-caption, #carousel-2-caption {
+  text-align: center;
 }
