@@ -7,8 +7,6 @@ from mirrormirror.models import *
 class CommentForm(forms.ModelForm):
     commentor_name = models.CharField(max_length=255)
     description = forms.CharField(widget=forms.Textarea(attrs={'rows':5}))
-    
-    
     class Meta:
         model = Comment
         fields = ['commentor_name','description']  # include all fields in form
@@ -25,42 +23,34 @@ class CommentForm(forms.ModelForm):
         self.fields['commentor_name'].label = 'Your Name:'
         self.fields['description'].label = 'Your Comment:'
 
+class DisabledForm():
+    def __init__(self):
+        for (_, field) in self.fields.items():
+            field.widget.attrs['disabled'] = True
+            field.widget.attrs['readonly'] = True
 
 
+class ResourceForm(forms.ModelForm):
+    class Meta:
+        model = Resource
+        labels = {
+            'time': 'Time (Minutes)',
+            'image_url': 'Image URL',
+        }
+        fields = '__all__'
 
 
-# class ResourceReviewForm(forms.ModelForm):
-#     class Meta:
-#         model = ResourceReview
-#         fields = ["resource_stars","resourcereview_comment"]
+class DeleteResourceForm(ResourceForm, DisabledForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        DisabledForm.__init__(self)
 
-# class NicheTagForm(forms.ModelForm):
-#     class Meta:
-#         model = NicheTag
-#         fields = ['tagnichename']
 
-#     def __init__(self, *args, **kwargs):
-#         # We send the form the keyword 'task', so we can pop that out now to use
-#         self.task = kwargs.pop('task', None)
-#         super().__init__(*args, **kwargs)
-
-#         # Every ModelForm has a self.instance, the instance of its model that we're 
-#         # editing, deleting, etc
-#         self.instance.resource = self.resource
-#         self.fields['nichename'].label = 'Category'
-
-#     def save(self, *args, **kwargs):
-#         # Usually, calling <form>.save() will try to create a new instance of the model.
-#         # In this case, a tag with the given name might already exist. Use get_or_create()
-#         # to only create one if it does not already exist
-
-#         # Alternative Django 
-#         # tag, _ = Tag.objects.get_or_create(name=self.data['name'])
-
-#         try:
-#             tag = NicheTag.objects.create(name=self.data['tagnichename'])
-#         except IntegrityError:
-#             tag = NicheTag.objects.get(name=self.data['tagnichename'])
-
-#         # Automatically add this tag to the task, whether it is new or not
-#         self.resource.tags.add(tag)
+class CategoryForm(forms.ModelForm):
+    catname = models.CharField(max_length=50) 
+    class Meta:
+        model = Category
+        fields = ['catname'] 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['catname'].label = 'Category Name:'
