@@ -1,0 +1,48 @@
+
+
+            </div>
+        </div>
+
+        
+    
+            <div class="col" id="comments-border">
+                <h1 class="page-title">Make a Category</h1>
+                <div class="display-box">
+
+                   <br>
+                   <h4>Make a Category</h4>
+                   <br>
+                   <form action="{% url 'category_list' %}" method="POST">
+                       {% csrf_token %}
+                       {{ form }}
+                       <br>
+                       <input type="submit" name="create" value="Create" />
+                   </form>
+                   
+                   <br>
+                   <br>
+                   {% for category in categorys %}
+                       <div>
+                           <p style="color:#808080">Category # {{ forloop.counter }} </p>
+                           <a href="{% url 'updateordeletecategory' category.id %}"> {{ category.catname }}  </a>
+     
+                           <br>
+                           <br>
+                            
+                       </div>
+                   
+                   {% endfor %}
+            
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col" id="contact-us-div">
+                <button type="button">Contact Us</button>
+            </div>
+
+            <div class="col" id="spacer-div"></div>
+        </div>
+    </div>
+</body>
