@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+       
+        <title>Resources</title>
+    </head>
+    <body>
+    <nav>
+        <ul>
+
+ 
+        </ul>
+    </nav>
+    {% block site_content %}
+    {% endblock %}
+    </body>
+</html>
+
+
+</div><div class="container">
+    <h1>Edit Resource</h1>
+    <div class="items-container">
+        <div class="item">
+            <form method="POST" action="{% url 'resource edit' resource.id %}">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" class="button edit" value="Edit">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Delete Resource</h1>
+    <div class="items-container">
+        <div class="item">
+            <form method="POST">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" class="button delete" value="Delete">
+            </form>
+        </div>
+    </div>
+</div>

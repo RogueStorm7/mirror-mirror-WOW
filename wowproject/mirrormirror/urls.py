@@ -11,13 +11,15 @@ urlpatterns = [
 
     path('comment/', UserCommentListView.as_view(), name='comment_list'),
     path('<int:comment_id>', UserCommentDetailView.as_view(), name='updateordelete'),
-    path('index/', index, name='index'),
-    path('create/', resource_create, name='resource create'),
-    path('edit/<int:pk>', resource_edit, name='resource edit'),
+    path('resourcetemppage/', index, name='resourcetemppage'),
+    path('resourcecreate/', resource_create, name='resource create'),
+    path('resourceedit/<int:pk>', resource_edit, name='resource edit'),
     path('delete/<int:pk>', resource_delete, name='resource delete'),
-    path('details/<int:pk>', resource_details, name='resource details'),
-    path('category/', CategoryListView.as_view(), name='category_list'),
+
+    path('categorycreate/', CategoryListView.as_view(), name='category_list'),
     path('category/<int:category_id>', CategoryDetailView.as_view(), name='updateordeletecategory'),
+    path('resourcereview/<int:id>',rate,name='resourcereview'),
+
 
 ]
 # handler404 = 'mirrormirror.views.handler404'

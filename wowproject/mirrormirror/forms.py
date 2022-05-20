@@ -1,6 +1,5 @@
 from django.db.utils import IntegrityError
 from django import forms
-
 from mirrormirror.models import *
 
 
@@ -34,8 +33,7 @@ class ResourceForm(forms.ModelForm):
     class Meta:
         model = Resource
         labels = {
-            'time': 'Time (Minutes)',
-            'image_url': 'Image URL',
+          
         }
         fields = '__all__'
 
@@ -54,3 +52,12 @@ class CategoryForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['catname'].label = 'Category Name:'
+
+
+
+
+class ResourceReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = ResourceReview
+        fields = ["resourcereview_username","resourcereview_stars","resourcereview_comment"]
