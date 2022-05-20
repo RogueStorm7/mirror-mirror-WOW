@@ -30,12 +30,12 @@ class UserCommentListView(View):
 
 class UserCommentDetailView(View):
     def get(self, request, comment_id):
-        '''GET the detail view of a single task on the todo list'''
+        '''GET the detail view of the Comment to modify it'''
         comment = Comment.objects.get(id=comment_id)
         form = CommentForm(initial={'description': comment.description, 'commentor_name': comment.commentor_name})
         
         return render(
-            request=request, template_name='commentupdate.html', context={'form':form, 'id': comment_id})
+            request=request, template_name='review_commentsupdate.html', context={'form':form, 'id': comment_id})
     def post(self, request, comment_id):
         '''Update or delete the specific task based on what the user submitted in the form'''
         comment = Comment.objects.filter(id=comment_id)
@@ -88,14 +88,14 @@ def index(request):
         'resources_present': resources_present,
         'resources': resources,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'resourcetemppage.html', context)
 
 def resource_create(request):
     if request.method == 'GET':
         context = {
             'form': ResourceForm(),
         }
-        return render(request, 'create.html', context)
+        return render(request, 'resourcecreate.html', context)
     else:
         form = ResourceForm(request.POST)
         if form.is_valid():
@@ -104,7 +104,7 @@ def resource_create(request):
         context = {
             'form': form,
         }
-        return render(request, 'create.html', context)
+        return render(request, 'resourcecreate.html', context)
  
  
 def resource_edit(request, pk):
@@ -115,7 +115,7 @@ def resource_edit(request, pk):
             'resource': resource,
             'form': ResourceForm(instance=resource)
         }
-        return render(request, 'edit.html', context)
+        return render(request, 'resourceedit.html', context)
     else:
         form = ResourceForm(request.POST, instance=resource)
         if form.is_valid():
@@ -126,17 +126,8 @@ def resource_edit(request, pk):
             'resource': resource,
             'form': form,
         }
-        return render(request, 'edit.html', context)
- 
- 
-def resource_details(request, pk):
-    resource = Resource.objects.get(pk=pk)
-    ingredients = resource.ingredients.split(', ')
-    context = {
-        'resource': resource,
-        'ingredients': ingredients,
-    }
-    return render(request, 'details.html', context)
+        return render(request, 'resourceedit.html', context)
+
  
  
 def resource_delete(request, pk):
@@ -154,86 +145,6 @@ def resource_delete(request, pk):
         return redirect('index')    
 
 
-
-
-# class ResourceView(View):
-#     def get(self, request, comment_id):
-#         '''GET the commentupdate view of a single task on the todo list'''
-#         task_object = Task.objects.get(id=comment_id)
-#         task_form = CommentForm(instance=task_object)
-
-#         comments = UserComment.objects.filter(task=task_object).order_by('-created_at')
-#         comment_form = UserCommentForm(task=task_object)
-
-#         tags = task_object.tags.all()  # Tag.objects.filter(task=task)
-#         tag_form = TagForm(task=task_object)
-
-#         return render(
-#             request=request,
-#             template_name='admin.html',
-#             context={
-#                 'task_form': task_form,
-#                 'id': comment_id,
-#                 'comments': comments,
-#                 'tags': tags,
-#                 'comment_form': comment_form,
-#                 'tag_form': tag_form,
-#             }
-#         )
-
-#     def post(self, request, comment_id):
-#         '''Update or delete the specific task based on what the user submitted in the form'''
-#         task = Task.objects.get(id=comment_id)     
-
-#         # Check request.POST to see which button the user clicked, and run the related logic
-#         if 'save_task' in request.POST:
-#             task_form = CommentForm(request.POST, instance=task)
-#             task_form.save()
-
-#         elif 'delete_task' in request.POST:
-#             task.delete()
-
-#         elif 'save_comment' in request.POST:
-#             # The user clicked the button to add a comment, not update the task
-#             comment_form = CommentForm(request.POST, task=task)
-#             comment_form.save()
-
-#             # In this case, we don't want to go back to the homepage, reload the 
-#             # current page instead
-#             return redirect('task', comment_id=task.id)
-
-#         elif 'add_tag' in request.POST:
-#             tag_form = TagForm(request.POST, task=task)
-#             tag_form.save()
-
-#             return redirect('task', comment_id=task.id)
-
-#         elif 'complete' in request.POST:
-#             task.completed = True
-#             task.save()
-
-#         # "redirect" to the todo homepage
-#         return redirect('comment_list')
-
-# class ResourceReviewView(View):
-#     def rate(request, id):
-#         post = Resource.objects.get(id=comment_id)
-#         form = ResourceReviewForm(request.POST or None)
-#         if form.is_valid():
-#             user_name = request.POST.get('user_name')
-#             resource_stars = request.POST.get('resource_stars')
-#             resourcereview_comment = request.POST.get('resourcereview_comment')
-#             review = ResourceReview(user_name = user_name, resource_stars = resource_stars,  resourcereview_comment=resourcereview_comment, resource=post)
-#             review.save()
-#             return redirect('success')
-
-#         form = ResourceReviewForm()
-#         context = {
-#             "form":form
-
-#         }
-#         return render(request, 'mirrormorror/reviews_comments.html',context)
-
 class CategoryListView(View):
 
 
@@ -242,7 +153,7 @@ class CategoryListView(View):
         form = CategoryForm()
 
         return render(
-            request=request, template_name = 'category.html', context = {'categorys': categorys, 'form': form}
+            request=request, template_name = 'categorycreate.html', context = {'categorys': categorys, 'form': form}
         )
 
     def post(self, request):
@@ -257,7 +168,7 @@ class CategoryListView(View):
 
 class CategoryDetailView(View):
     def get(self, request, category_id):
-        '''GET the detail view of a single task on the todo list'''
+        '''...'''
         category = Category.objects.get(id=category_id)
         form = CategoryForm(initial={'catname': category.catname})
         
@@ -280,4 +191,22 @@ class CategoryDetailView(View):
         return redirect('category_list')
 
 
+
+def rate(request, id):
+    post = Resource.objects.get(id=id)
+    form = ResourceForm(request.POST or None)
+    if form.is_valid():
+        resourcereview_username = request.POST.get('name')
+        resourcereview_stars = request.POST.get('stars')
+        resourcereview_comment = request.POST.get('comment')
+        review = ResourceReview(resourcereview_username=resourcereview_username, resourcereview_stars = resourcereview_stars,  resourcereview_comment=resourcereview_comment , resource=post)
+        review.save()
+        return redirect('index')
+
+    form = ResourceReviewForm()
+    context = {
+        "form":form
+
+    }
+    return render(request, 'resourcereview.html',context)
 

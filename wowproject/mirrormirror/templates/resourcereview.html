@@ -1,0 +1,34 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+       
+        <title>Review Resources</title>
+    </head>
+    <body>
+    <nav>
+        <ul>
+
+ 
+        </ul>
+    </nav>
+    {% block site_content %}
+    {% endblock %}
+    </body>
+</html>
+
+
+</div><div class="container">
+    <h1>Review Resource</h1>
+    <div class="items-container">
+        <div class="item">
+            <form method="POST" action="{% url 'resourcereview' resource.id %}">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" class="button review" value="Review">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+       
+        <title>Resources</title>
+    </head>
+    <body>
+    <nav>
+        <ul>
+
+            <li class="title"><a href="{% url 'resource create' %}">Resources</a></li>
+            <li><a href="{% url 'category_list' %}">Add Category</a></li>
+        </ul>
+    </nav>
+    {% block site_content %}
+    {% endblock %}
+    </body>
+</html>
+
+<div class="container">
+    <h2>Create Resource</h2>
+    <div class="items-container">
+        <div class="item">
+            <form method="POST" action="{% url 'resource create' %}">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" value="Create">
+
+            </form>
+        </div>
+    </div>
+</div>
+

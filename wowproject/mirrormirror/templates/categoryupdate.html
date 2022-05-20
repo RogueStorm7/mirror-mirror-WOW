@@ -1,26 +1,47 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+       
+        <title>Update or Delete Category</title>
+    </head>
+    <body>
+    <nav>
 
+    </nav>
+    {% block site_content %}
+    {% endblock %}
+    </body>
+</html>
 
-            </div>
-    
-          
-                <h1 class="page-title">Category</h1>
-              
-                   <br>
-                   <h4>Update or Delete Category</h4>
-                   <br>
-                   <form action="{% url 'updateordeletecategory' id %}" method="POST">
-                    {% csrf_token %}
-                    {{ form }}
-                    <br>
-                    <input type="submit" name="save" value="Update" />
-                    <input type="submit" name="delete" value="Delete" />
-                
-                </form>
-                <!-- Where content populates-->
-                </div>
-            </div>
-        </div>
-
-      </div>
+<div class="container">
+    <h2>Update or Delete Category</h2>
+    <div class="items-container">
+        <div class="item">
+           <form action="{% url 'updateordeletecategory' id %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" name="save" value="Update" />
+            <input type="submit" name="delete" value="Delete" />
+        
+        </form>
+        <!-- Where content populates-->
         </div>
     </div>
+</div>
+
+
+                   
+             
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

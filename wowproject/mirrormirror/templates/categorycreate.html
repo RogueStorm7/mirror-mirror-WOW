@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
+       
+        <title>Category</title>
+    </head>
+    <body>
+    <nav>
+
+    </nav>
+    {% block site_content %}
+    {% endblock %}
+    </body>
+</html>
+
+<div class="container">
+    <h2>Create Category</h2>
+    <div class="items-container">
+        <div class="item">
+            <form action="{% url 'category_list' %}" method="POST">
+                {% csrf_token %}
+                    {{ form }}
+                    <br>
+                     <input type="submit" name="create" value="Create" />
+                     
+            </form>
+            <br> 
+
+                {% for category in categorys %}
+                    <div>
+
+                        <a href="{% url 'updateordeletecategory' category.id %}"> {{ category.catname }}  </a>
+                        
+                        <br>
+                        <br>
+                        <br>
+     
+
+                            
+                    </div>
+                   
+                {% endfor %}
+            
+                </div>
+            </div>
+        </div>
+
+      
+
+            </form>
+        </div>
+    </div>
+</div>
+
