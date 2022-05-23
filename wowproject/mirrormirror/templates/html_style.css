@@ -14,51 +14,58 @@
     text-decoration: none;
     color: lightseagreen;
 }
+/* Styles all buttons across every html page */
+.button {
+    border-radius: 30px;
+    background-color: #999;
+    font-family: "Papyrus", fantasy;
+    color: black;
+    font-size: 16px;
+    border: none;
+    padding: 12px;
+    text-align: center;
+}
+.button:hover {
+    background-color: lavender;
+}
+.button-div {
+    text-align: center;
+}
 /*----------------------------*/
 
 
 /* HOME.html */
 /* Styling for image with button overlay */
 /* Positions sky-mirror img */
-#button-over-img {
+#img-with-button {
    text-align: center;
 }
 /* Styles "Click to Begin" button and places in middle of img */
- .begin-button {
+#begin-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    font-size: 16px;
-    width: 150px;
-    padding: 12px ;
-    border: none;
-    cursor: pointer;
-    border-radius: 30px;
-    background-color: #999;
-    text-decoration: none;
-    font-family: "Papyrus", fantasy;
-    color: black;
+    width: 150px;    
 }
- .begin-button:hover {
-    background-color: lavender;
-}
-/* Site catchy phrase */
+/* Styles the site catchy phrase */
 #phrase {
     text-align: center;
     font-size: 20px;
 }
-/* Trigger warning text */
+/* Styles trigger warning text */
 #trigger-warning {
-    text-align: center;
     font-size: 18px;
+    text-align: center;
 }
 /* Trigger warning colored box */
 #tw-box {
     border-style: solid;
     border-color: palegoldenrod;
     background-color: palegoldenrod;
+    width: 900px;
+    margin: 0 auto;
 }
 /*----------------------------*/
 
@@ -82,13 +89,6 @@
 #quiz-nudge {
     text-align: center;
 }
-/* Positions "Take Quiz" btn */
-.quiz-btn {
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px;
-    color: black;
-}
 /*----------------------------*/
 
 
@@ -106,34 +106,24 @@
     margin: 0 auto;
     width: 800px;
 }
+/* Makes the quiz questions bolder */
 .question{
     font-weight: 600;
   }
+/* Adds space between radio buttons and next question */
 .answers {
-      margin-bottom: 20px;
-  }
-#submit, #stats{
-    font-family: sans-serif;
-    font-size: 17px;
-    background-color: #999;
-    color: #fff;
-    border: 0px;
-    padding: 10px;
-    cursor: pointer;
     margin-bottom: 20px;
-    border-radius: 30px;
-    color: black;
   }
-#submit:hover{
-    background-color: lavender;
+/* Adds space around quiz submission and stat page buttons */
+#submit, #stats{
+    margin: 20px;
   }
-.quiz-submit, .take-to-stats {
-    text-align: center;
-}
+/* Styles box for when quiz score is displayed */
 .score {
     text-align: center;
     border-style: solid;
-
+    width: 300px;
+    margin: 0 auto;
 }
 /*----------------------------*/
 
@@ -164,10 +154,10 @@
 .stat-box{
     border-style: solid;
     padding: 20px;
-    margin: 50px;
-    height: 130px;
-    width: 130px;
+    height: 200px;
+    width: 200px;
     text-align: left;
+    margin: 0 auto;
 }
 /* Positions stat images in center */
 .stat-img {
@@ -177,13 +167,6 @@
 #next-steps {
     text-align: center;
     font-size: 18px;
-}
-/* Styles "Resources" btn */
-.resource-btn {
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px;
-    color: black;
 }
 /*----------------------------*/
 
@@ -195,44 +178,45 @@
 }
 /* Styles bit of text praising the act of seeking help */
 #reassurance-text {
-    margin-top:4%;
     text-align: center;
     border-style: inset;
     border-color: darkorchid;
     font-size: 18px;
-}
-/* Styles "Leave Review/Comment" btn */
-.review-comment-btn {
-    text-align: center;
-    border-radius: 30px;
-    text-decoration: none;
-    color: black;
+    width: 1100px;
+    margin: 0 auto;
 }
 /*----------------------------*/
 
 
 /* REVIEWS_COMMENTS.html */
+/* Adds space between the tops of the buttons and the top of the window */
 #resource-review-btn, #website-review-btn, #add-comment-btn, #home-btn {
-    padding-top: 15px;
+    margin-top: 15px;
 }
+/* Aligns these 2 buttons to the left of their respective columns */
 #resource-review-btn, #add-comment-btn {
     text-align: left;
 }
+/* Aligns these 2 buttons to the right of their respective columns */
 #home-btn, #website-review-btn {
     text-align: right;
 }
- #reviews-border{
+/* Adds a line to the right side of left col to create a middle split (like a faux vertical rule) */
+#reviews-border{
     border-right-style: solid;
     height: 600px;
 }
- #comments-border {
+/* Adds a line to the left side of right col to create a middle split (like a faux vertical rule) */
+#comments-border {
     border-left-style: solid;
     height: 600px;
 }
+/* Aligns "Contact Us" button to center of div right beneath Reviews col */
 #contact-us-div {
     text-align: center;
     border-right-style: solid;
 }
+/* An extra & empty div to keep "Contact Us" button in the 1st col under Review div/col */
 #spacer-div {
     text-align: center;
     border-left-style: solid;

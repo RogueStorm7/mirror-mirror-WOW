@@ -67,3 +67,7 @@ img {vertical-align: middle;}
 #carousel-1-caption, #carousel-2-caption {
   text-align: center;
 }
+#carousel-2-caption {
+  width: 800px;
+  margin: 0 auto;
+}
