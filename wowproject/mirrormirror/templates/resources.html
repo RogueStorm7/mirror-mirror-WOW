@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <!-- Carousel CSS -->
+    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/carousel_style.css">
 </head>
 <body class="body">
     <div class="container-fluid px-0">
@@ -111,10 +113,70 @@
         <br>
 
         <div class="row">
-            <div class="col">
-                <div class="carousel">
-
+            <div class="col carousel">
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                      <div class="numbertext">1 / 5</div>
+                      <img src="/carousels/assets/carousel-4-images/alterego.jpg" style="width:100%" height="600px"> 
+                      <div class="text"><span class="highlight">Each of us are multifaceted; embrace every part of yourself.</span></div>
+                    </div>
+                    
+                    <div class="mySlides fade">
+                      <div class="numbertext">2 / 5</div>
+                      <img src="/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543246.jpg" style="width:100%" height="600px">
+                      <div class="text"><span class="highlight">Grounding, Centering, & Focusing</span></div>
+                    </div>
+                    
+                     <div class="mySlides fade">
+                      <div class="numbertext">3 / 5</div>
+                      <img src="/carousels/assets/carousel-4-images/pexels-mikhail-nilov-6931926.jpg" style="width:100%" height="600px">
+                      <div class="text"><span class="highlight">Cleanse & Soothe</span></div>
+                    </div>
+                    
+                    <div class="mySlides fade">
+                      <div class="numbertext">4 / 5</div>
+                      <img src="/carousels/assets/carousel-4-images/pexels-pixabay-260024.jpg" style="width:100%" height="600px">
+                      <div class="text"><span class="highlight">Plan with patience.</span></div>
+                    </div>
+                    
+                    <div class="mySlides fade">
+                      <div class="numbertext">5 / 5</div>
+                      <img src="/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543533.jpg" style="width:100%" height="600px">
+                      <div class="text"><span class="highlight">Trust that there is relief and support for you.</span></div>
+                    </div>
                 </div>
+
+                <br>
+                    
+                <div style="text-align:center">
+                    <span class="dot"></span> 
+                    <span class="dot"></span> 
+                    <span class="dot"></span>
+                    <span class="dot"></span> 
+                    <span class="dot"></span>   
+                </div>
+                    
+                <script>
+                    let slideIndex = 0;
+                    showSlides();
+                    
+                    function showSlides() {
+                        let i;
+                        let slides = document.getElementsByClassName("mySlides");
+                        let dots = document.getElementsByClassName("dot");
+                        for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";  
+                        }
+                        slideIndex++;
+                        if (slideIndex > slides.length) {slideIndex = 1}    
+                        for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                        }
+                        slides[slideIndex-1].style.display = "block";  
+                        dots[slideIndex-1].className += " active";
+                        setTimeout(showSlides, 3000); // Change image every 3 seconds
+                    }
+                </script>
             </div>
         </div>
 
