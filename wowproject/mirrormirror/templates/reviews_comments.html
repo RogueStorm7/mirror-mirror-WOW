@@ -1,5 +1,4 @@
-</form>
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,40 +9,24 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
 </head>
+{% block site_content %}
 <body class="body">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div class="dropdown" id="resource-review-btn">
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Resource Review
+                        Add Resource Review
                     </button>
-                    <form class="dropdown-menu p-4">
+                    <form class="dropdown-menu p-4" method="POST" action="{% url 'resourcereview_list' %}" >
                         <div class="mb-3">
-                            <label for="user" class="form-label">User:</label>
-                            <input type="user-name" class="form-control" id="user" placeholder="Anonymous">
+                            {% csrf_token %}
+                            {{ resource_review_form }}
+                            <br>
+                            <input type="submit" class="review" value="Share">
                         </div>
-                        <div class="mb-3">
-                            <label for="resource" class="form-label">Resource:</label>
-                            <input type="resource-name" class="form-control" id="resource" placeholder="SonderMind">
-                        </div>
-                        <div class="mb-3">
-                            <label for="rate" class="form-label">Click to Rate:</label>
-                            <select class="form-control" id="rate">
-                                <option value="1star">1</option>
-                                <option value="2stars">2</option>
-                                <option value="3stars">3</option>
-                                <option value="4stars">4</option>
-                                <option value="5stars">5</option>
-                              </select>                        
-                        </div>
-                        <div class="mb-3">
-                            <label for="feedback" class="form-label">Write Your Feedback:</label>
-                            <textarea class="form-control" id="feedback" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -51,42 +34,38 @@
             <div class="col">
                 <div class="dropdown" id="website-review-btn">
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Website Review
+                        Add Website Review
                     </button>
-                    <form class="dropdown-menu p-4">
+                    <form class="dropdown-menu p-4" method="POST">
                         <div class="mb-3">
-                            <label for="user" class="form-label">User:</label>
-                            <input type="user-name" class="form-control" id="user" placeholder="Anonymous">
+                            {% csrf_token %}
+                            {{ website_review_form }}
+                            <br>
+                            <input type="submit" name="add_review" value="Share" />
                         </div>
-                        <div class="mb-3">
-                            <label for="rate" class="form-label">Click to Rate:</label>
-                            <select class="form-control" id="rate">
-                                <option value="1star">1</option>
-                                <option value="2stars">2</option>
-                                <option value="3stars">3</option>
-                                <option value="4stars">4</option>
-                                <option value="5stars">5</option>
-                            </select>                        
-                        </div>
-                        <div class="mb-3">
-                            <label for="feedback" class="form-label">Write Your Feedback:</label>
-                            <textarea class="form-control" id="feedback" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
 
-            <div class="col"></div>
+            <!-- <div class="col"></div> -->
 
-            <!-- <div class="dropdown col" id="add-comment-btn">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Add Comment
-                </button>
-                
-            </div> -->
+            <div class="col">
+                <div class="dropdown" id="add-comment-btn">
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                        Add Comment
+                    </button>
+                    <form class="dropdown-menu p-4" method="POST">
+                        <div class="mb-3">
+                            {% csrf_token %}
+                            {{ comment_form }}
+                            <br>
+                            <input type="submit" name="add_comment" value="Share" />
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="col" id="home-btn">
-                <button type="button"><a href="/wowproject/mirrormirror/templates/home.html" class="home-link">Home</a></button>
+                <button type="button"><a href="{% url 'home' %}" class="home-link">Home</a></button>
             </div>
         </div>
 
@@ -95,25 +74,32 @@
                 <h1 class="page-title">Reviews</h1>
                 <div class="display-box">
                     <!-- Where content populates-->
+                    {% for review in resourcereview %}
+                       <div>
+                           <p style="color:#808080">User Resource Review # {{ forloop.counter }} | {{ resourcereview.resourcereview_date}}</p>
+                           <p> {{ resourcereview.resourcereview_username }} </p>
+                           <p> {{ resourcereview.resourcereview_rating }} </p>      
+                           <p> {{ resourcereview.resourcereview_comment }} </p>      
+                           <br>
+                           <br>
+                       </div>
+                   {% endfor %}
+<!-- ADD HR + ROW TO SEPARATE RESOURCE REVIEWS FROM WEBSITE REVIEWS! -->
+                   {% for review in reviews %}
+                       <div>
+                           <p style="color:#808080">User Website Review # {{ forloop.counter }} | {{ review.created_at}}</p>
+                           <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
+                           <p> {{ review.review }} </p>      
+                           <br>
+                           <br>
+                       </div>
+                   {% endfor %}
                 </div>
             </div>
     
             <div class="col" id="comments-border">
                 <h1 class="page-title">Comments</h1>
                 <div class="display-box">
-
-                   <br>
-                   <h4>Leave a Personal Comment</h4>
-                   <br>
-                   <form action="{% url 'comment_list' %}" method="POST">
-                       {% csrf_token %}
-                       {{ form }}
-                       <br>
-                       <input type="submit" name="create" value="Create" />
-                   </form>
-                   
-                   <br>
-                   <br>
                    {% for comment in comments %}
                        <div>
                            <p style="color:#808080">User Comment # {{ forloop.counter }} | {{ comment.created_at}}</p>
@@ -121,11 +107,8 @@
                            <p> {{ comment.description }} </p>      
                            <br>
                            <br>
-                            
                        </div>
-                   
                    {% endfor %}
-            
                 </div>
             </div>
         </div>
@@ -140,5 +123,6 @@
     </div>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+{% endblock %}
 </body>
 </html>

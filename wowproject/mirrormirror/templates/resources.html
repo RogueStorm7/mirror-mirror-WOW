@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,101 +9,57 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
     <!-- Carousel CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/carousel_style.css">
+    <link rel="stylesheet" href="{% static 'css/carousel_style.css'%}"/>
 </head>
+{% block site_content %}
 <body class="body">
     <div class="container-fluid px-0">
-        <div class="row">
+        <div class="row g-0">
             <div class="col">
                 <!-- Bootstrap for dropdown; links populate on page instead of taking to new page or site -->
-                <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
                     <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Mental Health
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                        <a class="navbar-brand" href="#">
+                            <img src="{% static 'css/tiny-mirror.png'%}" alt="A small cartoon mirror">
+                        </a>
+                
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Mental Health</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Justice Impacted
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Justice Impacted</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Physical Health
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Physical Health</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Overall Wellness
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Overall Wellness</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        National Resources
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">National Resources</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Physical Health
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Zipcode
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Zipcode</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>                 
                     </div>
                 </nav>
             </div>
         </div>
         <br>
 
-        <div class="row">
+        <div class="row g-0">
+            <div class="col">
+                <!-- resources populate here -->
+            </div>
+        </div>
+
+        <div class="row g-0">
             <div class="col">
                 <!--maybe an explanation of how seeking help is not a shameful act??-->
                 <p id="reassurance-text">Seeking help is not a shameful act. When a person knows they have deep-seated problems and wants to actively pursue change, <br>
@@ -112,36 +69,36 @@
         </div>
         <br>
 
-        <div class="row">
+        <div class="row g-0">
             <div class="col carousel">
                 <div class="slideshow-container">
                     <div class="mySlides fade">
                       <div class="numbertext">1 / 5</div>
-                      <img src="/carousels/assets/carousel-4-images/alterego.jpg" style="width:100%" height="600px"> 
+                      <img src="{% static 'css/carousels/assets/carousel-4-images/alterego.jpg'%}" style="width:100%" height="600px"> 
                       <div class="text"><span class="highlight">Each of us are multifaceted; embrace every part of yourself.</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">2 / 5</div>
-                      <img src="/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543246.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543246.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Grounding, Centering, & Focusing</span></div>
                     </div>
                     
                      <div class="mySlides fade">
                       <div class="numbertext">3 / 5</div>
-                      <img src="/carousels/assets/carousel-4-images/pexels-mikhail-nilov-6931926.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-4-images/pexels-mikhail-nilov-6931926.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Cleanse & Soothe</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">4 / 5</div>
-                      <img src="/carousels/assets/carousel-4-images/pexels-pixabay-260024.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-4-images/pexels-pixabay-260024.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Plan with patience.</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">5 / 5</div>
-                      <img src="/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543533.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-4-images/pexels-mental-health-america-(mha)-5543533.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Trust that there is relief and support for you.</span></div>
                     </div>
                 </div>
@@ -180,19 +137,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row g-0">
             <div class="col button-div">
-                <button type="button" class="button" onclick="location.href='/wowproject/mirrormirror/templates/reviews_comments.html'">Leave Review/Comment</button>
+                <button type="button" class="button"><a href="{% url 'display' %}">Leave Review/Comment</a></button>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row g-0">
             <div class="col">
-                <a href="/wowproject/mirrormirror/templates/home.html" class="home-link">Home</a>
+                <a href="{% url 'home' %}" class="home-link">Home</a>
             </div>
         </div>
     </div>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+{% endblock %}
 </body>
 </html>

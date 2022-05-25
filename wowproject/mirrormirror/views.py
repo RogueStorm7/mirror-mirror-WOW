@@ -5,28 +5,109 @@ from django.views import View
 from django.views.generic import TemplateView
 from mirrormirror.forms import *
 from mirrormirror.models import *
+  
+
+# Create your views here.
+class HomeView(TemplateView):
+    template_name='home.html'
 
 
-class UserCommentListView(View):
+class WelcomeView(TemplateView):
+    template_name='welcome.html'
+
+
+class AceQuizView(View):
     def get(self, request):
-        '''listing all user comments in reverse order that they were created'''
-        comments = Comment.objects.all().order_by('-id')
-        form = CommentForm()
-
         return render(
-            request=request, template_name = 'reviews_comments.html', context = {'comments': comments, 'form': form}
+            request=request,
+            # render ace-quiz.html page
+            template_name='ace-quiz.html',
         )
 
-    def post(self, request):
-        '''POST the data in the from submitted by the user, creating a new comment in the list'''
-        form=CommentForm(request.POST)
-        if form.is_valid():
-            comment_description = form.cleaned_data['description']
-            comment_commentor_name = form.cleaned_data['commentor_name']
-            Comment.objects.create(description=comment_description, commentor_name=comment_commentor_name)
 
-        # "redirect" to the comment page
-        return redirect('comment_list')
+class ScoreStatsView(TemplateView):
+    template_name='score_stats.html'
+
+
+class ResourcesView(View):
+    def get(self, request):
+        return render(
+            request=request,
+            # render resources.html page
+            template_name='resources.html',
+        )
+    
+
+# gets & posts Website Reviews + Comments; displays them in designated divs via templating on same html page
+def get_and_post(request):
+    if request.method == 'GET':
+        reviews = WebsiteReview.objects.all().order_by('-id')
+        comments = Comment.objects.all().order_by('-id')
+        website_review_form = WebsiteReviewForm()
+        comment_form = CommentForm()
+
+        context = {
+            'reviews': reviews, 
+            'website_review_form': website_review_form,
+            'comments': comments, 
+            'comment_form': comment_form,
+        }
+        return render(request, 'reviews_comments.html', context)
+    website_review_form = WebsiteReviewForm()
+    comment_form = CommentForm()
+    if request.method == 'POST':
+        if 'widget1' in request.POST:
+            website_review_form = WebsiteReviewForm(request.POST)
+            if website_review_form.is_valid():
+                websitereview_review = website_review_form.cleaned_data['review']
+                websitereview_user_name = website_review_form.cleaned_data['user_name']
+                WebsiteReview.objects.create(review=websitereview_review, user_name=websitereview_user_name)
+                return redirect('display')
+        if 'widget2' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment_description = comment_form.cleaned_data['description']
+                comment_commentor_name = comment_form.cleaned_data['commentor_name']
+                Comment.objects.create(description=comment_description, commentor_name=comment_commentor_name)
+                return redirect('display')
+    context = {
+        'reviews': reviews,
+        'comments': comments,
+        'website_review_form': website_review_form,
+        'comment_form': comment_form,
+    }
+    return render(request, 'reviews_comments.html', context=context)
+
+
+class WebsiteReviewDetailView(View):
+    def get(self, request, review_id):
+        '''GET the detail view of the Comment to modify it'''
+        review = WebsiteReview.objects.get(id=review_id)
+        form = WebsiteReviewForm(initial={'review': review.review, 'user_name': review.user_name})
+        
+        return render(
+            request=request, template_name='websitereview_update.html', context={'form':form, 'id': review_id})
+    def post(self, request, review_id):
+        '''Update or delete the specific task based on what the user submitted in the form'''
+        review = WebsiteReview.objects.filter(id=review_id)
+        if 'save' in request.POST:
+            form = WebsiteReviewForm(request.POST)
+            if form.is_valid():
+                website_review = form.cleaned_data['review']
+                user_name = form.cleaned_data['user_name']
+                review.update(review=website_review)
+                review.update(user_name=user_name)
+
+        elif 'delete' in request.POST:
+            review.delete()
+
+        # "redirect" to the list page
+        return redirect('display')
+    
+
+
+
+
 
 class UserCommentDetailView(View):
     def get(self, request, comment_id):
@@ -51,33 +132,12 @@ class UserCommentDetailView(View):
             comment.delete()
 
         # "redirect" to the list page
-        return redirect('comment_list')
+        return redirect('display')
 
 
 
-# Create your views here.
-class HomeView(TemplateView):
-    template_name='home.html'
 
 
-class WelcomeView(TemplateView):
-    template_name='welcome.html'
-
-
-class AceQuizView(View):
-    def get(self, request):
-        return render(
-            request=request,
-            # render ace-quiz.html page
-            template_name='ace-quiz.html',)
-
-class ScoreStatsView(View):
-    def get(self, request):
-        return render(
-            request=request,
-            template_name='score_stats.html', 
-
-        )
 
 
 
@@ -100,12 +160,11 @@ def resource_create(request):
         form = ResourceForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            return redirect('index')
+            return redirect('resourcecreate.html')
         context = {
             'form': form,
         }
         return render(request, 'resourcecreate.html', context)
- 
  
 def resource_edit(request, pk):
     resource = Resource.objects.get(pk=pk)
@@ -120,15 +179,13 @@ def resource_edit(request, pk):
         form = ResourceForm(request.POST, instance=resource)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('resourcetemppage.html')
  
         context = {
             'resource': resource,
             'form': form,
         }
         return render(request, 'resourceedit.html', context)
-
- 
  
 def resource_delete(request, pk):
     resource = Resource.objects.get(pk=pk)
@@ -146,8 +203,6 @@ def resource_delete(request, pk):
 
 
 class CategoryListView(View):
-
-
     def get(self, request):
         categorys = Category.objects.all().order_by('-id')
         form = CategoryForm()
@@ -192,21 +247,49 @@ class CategoryDetailView(View):
 
 
 
-def rate(request, id):
-    post = Resource.objects.get(id=id)
-    form = ResourceForm(request.POST or None)
-    if form.is_valid():
-        resourcereview_username = request.POST.get('name')
-        resourcereview_stars = request.POST.get('stars')
-        resourcereview_comment = request.POST.get('comment')
-        review = ResourceReview(resourcereview_username=resourcereview_username, resourcereview_stars = resourcereview_stars,  resourcereview_comment=resourcereview_comment , resource=post)
-        review.save()
-        return redirect('index')
+# def rate(request, id):
+#     post = Resource.objects.get(id=id)
+#     form = ResourceForm(request.POST or None)
+#     if form.is_valid():
+#         resourcereview_username = request.POST.get('name')
+#         resourcereview_stars = request.POST.get('stars')
+#         resourcereview_comment = request.POST.get('comment')
+#         review = ResourceReview(resourcereview_username=resourcereview_username, resourcereview_stars = resourcereview_stars,  resourcereview_comment=resourcereview_comment , resource=post)
+#         review.save()
+#         return redirect('index')
 
-    form = ResourceReviewForm()
-    context = {
-        "form":form
+#     form = ResourceReviewForm()
+#     context = {
+#         "form":form
 
-    }
-    return render(request, 'resourcereview.html',context)
+#     }
+#     return render(request, 'resourcereview.html',context)
+
+class ResourceReviewListView(View):
+    def get(self, request):
+        '''listing all user reviews in reverse order that they were created'''
+        review = ResourceReview.objects.all().order_by('-id')
+        form = ResourceReviewForm()
+
+        return render(
+            request=request, template_name = 'reviews_comments.html', context = {'resource_reviews': review, 'resource_review_form': form}
+        )
+
+    def post(self, request):
+        '''POST the data in the from submitted by the user, creating a new comment in the list'''
+        form=ResourceReviewForm(request.POST)
+        if form.is_valid():
+            resource_review = form.cleaned_data['resourcereview_comment']
+            resource_review_username = form.cleaned_data['resourcereview_username']
+            ResourceReview.objects.create(resourcereview_comment=resource_review, resourcereview_username=resource_review_username)
+
+        # "redirect" to the comment page
+        return redirect('resourcereview_list')
+
+
+
+
+
+
+
 
