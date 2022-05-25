@@ -84,11 +84,11 @@
                            <br>
                        </div>
                    {% endfor %}
-
+<!-- ADD HR + ROW TO SEPARATE RESOURCE REVIEWS FROM WEBSITE REVIEWS! -->
                    {% for review in reviews %}
                        <div>
                            <p style="color:#808080">User Website Review # {{ forloop.counter }} | {{ review.created_at}}</p>
-                           <a href="{% url 'review_updateordelete' review.id %}"> {{ review.user_name }} </a>
+                           <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
                            <p> {{ review.review }} </p>      
                            <br>
                            <br>

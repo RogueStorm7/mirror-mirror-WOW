@@ -16,53 +16,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div class="dropdown" id="resource-review-btn">
-                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Resource Review
-                    </button>
-                    <form class="dropdown-menu p-4" method="POST" action="{% url 'resourcereview_list' %}" >
-                        <div class="mb-3">
-                            {% csrf_token %}
-                            {{ resource_review_form }}
-                            <br>
-                            <input type="submit" class="review" value="Review">
-                        </div>
-                    </form>
-                </div>
+                <div></div>
             </div>
 
             <div class="col">
-                <div class="dropdown" id="website-review-btn">
-                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Website Review
-                    </button>
-                    <form class="dropdown-menu p-4" action="{% url 'websitereview_list' %}" method="POST">
-                        <div class="mb-3">
-                            {% csrf_token %}
-                            {{ website_review_form }}
-                            <br>
-                            <input type="submit" name="create" value="Review" />
-                        </div>
-                    </form>
-                </div>
+                <div></div>
             </div>
 
             <!-- <div class="col"></div> -->
 
             <div class="col">
-                <div class="dropdown" id="add-comment-btn">
-                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        Add Comment
-                    </button>
-                    <form class="dropdown-menu p-4" action="{% url 'comment_list' %}" method="POST">
-                        <div class="mb-3">
-                            {% csrf_token %}
-                            {{ form }}
-                            <br>
-                            <input type="submit" name="create" value="Create" />
-                        </div>
-                    </form>
-                </div>
+                <div></div>
             </div>
             <div class="col" id="home-btn">
                 <button type="button"><a href="{% url 'home' %}" class="home-link">Home</a></button>
@@ -77,9 +41,9 @@
                     <br>
                     <h4>Update or Delete</h4>
                     <br>
-                    <form action="{% url 'review_updateordelete' id %}" method="POST">
+                    <form method="POST">
                         {% csrf_token %}
-                        {{ website_review_form }}
+                        {{ form }}
                         <br>
                         <input type="submit" name="save" value="Update" />
                         <input type="submit" name="delete" value="Delete" />

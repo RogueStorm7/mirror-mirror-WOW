@@ -79,6 +79,36 @@ def get_and_post(request):
     return render(request, 'reviews_comments.html', context=context)
 
 
+class WebsiteReviewDetailView(View):
+    def get(self, request, review_id):
+        '''GET the detail view of the Comment to modify it'''
+        review = WebsiteReview.objects.get(id=review_id)
+        form = WebsiteReviewForm(initial={'review': review.review, 'user_name': review.user_name})
+        
+        return render(
+            request=request, template_name='websitereview_update.html', context={'form':form, 'id': review_id})
+    def post(self, request, review_id):
+        '''Update or delete the specific task based on what the user submitted in the form'''
+        review = WebsiteReview.objects.filter(id=review_id)
+        if 'save' in request.POST:
+            form = WebsiteReviewForm(request.POST)
+            if form.is_valid():
+                website_review = form.cleaned_data['review']
+                user_name = form.cleaned_data['user_name']
+                review.update(review=website_review)
+                review.update(user_name=user_name)
+
+        elif 'delete' in request.POST:
+            review.delete()
+
+        # "redirect" to the list page
+        return redirect('display')
+    
+
+
+
+
+
 class UserCommentDetailView(View):
     def get(self, request, comment_id):
         '''GET the detail view of the Comment to modify it'''
@@ -86,8 +116,7 @@ class UserCommentDetailView(View):
         form = CommentForm(initial={'description': comment.description, 'commentor_name': comment.commentor_name})
         
         return render(
-            request=request, template_name='review_commentsupdate.html', context={'comment_form':form, 'id': comment_id})
-   
+            request=request, template_name='review_commentsupdate.html', context={'form':form, 'id': comment_id})
     def post(self, request, comment_id):
         '''Update or delete the specific task based on what the user submitted in the form'''
         comment = Comment.objects.filter(id=comment_id)
@@ -103,34 +132,13 @@ class UserCommentDetailView(View):
             comment.delete()
 
         # "redirect" to the list page
-        return redirect('comment_list')
+        return redirect('display')
 
 
-class WebsiteReviewDetailView(View):
-    def get(self, request, websitereview_id):
-        '''GET the detail view of the Review to modify it'''
-        review = WebsiteReview.objects.get(id=websitereview_id)
-        form = WebsiteReviewForm(initial={'review': review.review, 'user_name': review.user_name})
-        
-        return render(
-            request=request, template_name='websitereview_update.html', context={'website_review_form':form, 'id': websitereview_id})
-   
-    def post(self, request, websitereview_id):
-        '''Update or delete the specific task based on what the user submitted in the form'''
-        review = WebsiteReview.objects.filter(id=websitereview_id)
-        if 'save' in request.POST:
-            form = WebsiteReviewForm(request.POST)
-            if form.is_valid():
-                websitereview_review = form.cleaned_data['review']
-                websitereview_user_name = form.cleaned_data['user_name']
-                review.update(review=websitereview_review)
-                review.update(user_name=websitereview_user_name)
 
-        elif 'delete' in request.POST:
-            review.delete()
 
-        # "redirect" to the list page
-        return redirect('websitereview_list')
+
+
 
 
 def index(request):
