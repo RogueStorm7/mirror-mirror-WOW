@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +9,11 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
     <!-- Carousel CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/carousel_style.css">
+    <link rel="stylesheet" href="{% static 'css/carousel_style.css'%}"/>
 </head>
+{% block site_content %}
 <body class="body">
     <div class="container-fluid">
         <div class="row page-title">
@@ -50,7 +52,7 @@
 
         <div class="row">
             <div class="col button-div">
-               <button id="stats" class="button" onclick="location.href='/wowproject/mirrormirror/templates/score_stats.html'">ACE Statistics</button>
+               <button id="stats" class="button"><a href="{% url 'score_stats' %}">ACE Statistics</a></button>
             </div>
         </div>
 
@@ -59,31 +61,31 @@
                 <div class="slideshow-container">
                     <div class="mySlides fade">
                       <div class="numbertext">1 / 5</div>
-                      <img src="/carousels/assets/carousel-3-images/pexels-lisa-fotios-2183445.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-3-images/pexels-lisa-fotios-2183445.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Facing the past can be triggering.</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">2 / 5</div>
-                      <img src="/carousels/assets/carousel-3-images/pexels-uncoveredlens-5362523.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-3-images/pexels-uncoveredlens-5362523.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Be gentle with yourself.</span></div>
                     </div>
                     
                      <div class="mySlides fade">
                       <div class="numbertext">3 / 5</div>
-                      <img src="/carousels/assets/carousel-3-images/crowd in mirror.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-3-images/crowd in mirror.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Many people are healing from past wounds.</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">4 / 5</div>
-                      <img src="/carousels/assets/carousel-3-images/shattered.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-3-images/shattered.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">Learning from the past sparks change.</span></div>
                     </div>
                     
                     <div class="mySlides fade">
                       <div class="numbertext">5 / 5</div>
-                      <img src="/carousels/assets/carousel-3-images/blur.jpg" style="width:100%" height="600px">
+                      <img src="{% static 'css/carousels/assets/carousel-3-images/blur.jpg'%}" style="width:100%" height="600px">
                       <div class="text"><span class="highlight">To know where you're going you must acknowledge where you've been.</span></div>
                     </div> 
                 </div>
@@ -124,11 +126,12 @@
 
         <div class="row">
             <div class="col">
-                <a href="/wowproject/mirrormirror/templates/home.html" class="home-link">Home</a>
+                <a href="{% url 'home' %}" class="home-link">Home</a>
             </div>
         </div>
     </div>
 <!-- JavaScript -->
-<script src="/wowproject/mirrormirror/templates/quiz.js"></script>
+<script src="{% static 'css/quiz.js'%}"></script>
+{% endblock %}
 </body>
 </html>

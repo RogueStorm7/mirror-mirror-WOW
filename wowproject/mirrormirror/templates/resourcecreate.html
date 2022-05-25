@@ -1,36 +1,36 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/style.css'%}"/>
-       
-        <title>Resources</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Resource</title>
+    <!-- Resource Pages CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}"/> 
+</head>
+{% block site_content %}
+<body>
     <nav>
         <ul>
-
-            <li class="title"><a href="{% url 'resource create' %}">Resources</a></li>
+            <li class="title"><a href="{% url 'resourcetemppage' %}">Resources</a></li>
             <li><a href="{% url 'category_list' %}">Add Category</a></li>
         </ul>
     </nav>
-    {% block site_content %}
-    {% endblock %}
-    </body>
-</html>
+ 
 
-<div class="container">
-    <h2>Create Resource</h2>
-    <div class="items-container">
-        <div class="item">
-            <form method="POST" action="{% url 'resource create' %}">
-                {{ form }}
-                {% csrf_token %}
-                <input type="submit" value="Create">
-
-            </form>
+    <div class="container">
+        <h2>Create Resource</h2>
+        <div class="items-container">
+            <div class="item">
+                <form method="POST" action="{% url 'resource create' %}">
+                    {{ form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Create">
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+{% endblock %}
+</body>
+</html>

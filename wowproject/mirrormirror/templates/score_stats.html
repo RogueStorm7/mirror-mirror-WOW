@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
 </head>
+{% block site_content %}
 <body class="body">
     <div class="container-fluid px-0">
         <!-- <div class="row">
@@ -20,7 +22,7 @@
        
         <div class="row g-0">
             <div class="col">
-                <img src="/wowproject/mirrormirror/templates/images/tree-reflect.jpg" height="300px" width="100%" alt="Tree reflected in pool of water">
+                <img src="{% static 'css/tree-reflect.jpg'%}" height="300px" width="100%" alt="Tree reflected in pool of water">
             </div>
         </div>
     
@@ -29,7 +31,7 @@
                 <br>
                 <p>One of the best antidotes to childhood trauma is safe and healthy relationships. <br>
                     Social support helps build resilience- the ability to bounce back from difficulty. <br>
-                    <a href="https://blog.bcbsnc.com/2021/02/how-childhood-trauma-affects-adult-health-and-what-you-can-do-about-it/" target="_blank">How You Can Combat the Affects of ACEs</a></p>
+                    <a href="https://blog.bcbsnc.com/2021/02/how-childhood-trauma-affects-adult-health-and-what-you-can-do-about-it/" target="_blank">How You Can Combat the Effects of ACEs</a></p>
             </div>
         </div>
 
@@ -58,11 +60,11 @@
         <div class="row g-0">
             <div class="col stat-img">
                <br>
-                <img src="/wowproject/mirrormirror/templates/images/ace-women.png" height="500px" width="500px" alt="ACE prevalence statistics in cisgender women">
+                <img src="{% static 'css/ace-women.png'%}" height="500px" width="500px" alt="ACE prevalence statistics in cisgender women">
             </div>
             <div class="col stat-img">
                 <br>
-                <img src="/wowproject/mirrormirror/templates/images/ace-men.png" height="500px" width="500px" alt="ACE prevalence statistics in cisgender men">
+                <img src="{% static 'css/ace-men.png'%}" height="500px" width="500px" alt="ACE prevalence statistics in cisgender men">
             </div>
         </div>
 
@@ -70,7 +72,7 @@
             <div class="col stat-img">
                 <br>
                 <br>
-                <img src="/wowproject/mirrormirror/templates/images/ace-lgb.png" width="700px" height="450px"  alt="Prevalence of ACE score by sexual orientation">
+                <img src="{% static 'css/ace-lgb.png'%}" width="700px" height="450px"  alt="Prevalence of ACE score by sexual orientation">
                 <p>Source: <a href="https://californialgbtqhealth.org/wp-content/uploads/2019/12/LGBTQ-ACES-Fact-Sheet-FINAL.pdf?msclkid=5a16f99ecf6811ecaf9d978872d24e10" target="_blank">#Out4MentalHealth</a></p>
             </div>
         </div>
@@ -87,15 +89,16 @@
 
         <div class="row g-0">
             <div class="col button-div">
-                <button type="button" class="button" onclick="location.href='/wowproject/mirrormirror/templates/resources.html'">Resources</a></button>
+                <button type="button" class="button"><a href="{% url 'resources' %}">Resources</a></button>
             </div>
         </div>
 
         <div class="row g-0">
             <div class="col">
-                <a href="/wowproject/mirrormirror/templates/home.html" class="home-link">Home</a>
+                <a href="{% url 'home' %}" class="home-link">Home</a>
             </div>
         </div>
     </div>
+{% endblock %}
 </body>
 </html>

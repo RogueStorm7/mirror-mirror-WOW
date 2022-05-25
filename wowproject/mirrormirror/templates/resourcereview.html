@@ -24,7 +24,7 @@
     <h1>Review Resource</h1>
     <div class="items-container">
         <div class="item">
-            <form method="POST" action="{% url 'resourcereview' resource.id %}">
+            <form method="POST" action="{% url 'resourcereview_list' %}">
                 {{ form }}
                 {% csrf_token %}
                 <input type="submit" class="button review" value="Review">

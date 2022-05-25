@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirror Mirror - Home</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/html_style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
     <!-- Carousel CSS -->
-    <link rel="stylesheet" href="/wowproject/mirrormirror/templates/carousel_style.css">
+    <link rel="stylesheet" href="{% static 'css/carousel_style.css'%}"/>
 </head>
+{% block site_content %}
 <body class="body">
     <div class="container-fluid">
         <div class="row">
@@ -22,8 +25,8 @@
         <div class="row">
             <div class="col">
                 <div id="img-with-button">
-                    <img src="/wowproject/mirrormirror/templates/images/sky-mirror.png" height="550px" width="300px" alt="Mirror in grass with sky, clouds, and bird overhead" />
-                    <div id="button-over-img"><button type="button" id="begin-button" class="button" onclick="location.href='/wowproject/mirrormirror/templates/welcome.html'">Click to Begin</button></div>
+                    <img src="{% static 'css/sky-mirror.png'%}" height="550px" width="300px" alt="Mirror in grass with sky, clouds, and bird overhead" />
+                    <div id="button-over-img"><button type="button" id="begin-button" class="button"><a href="{% url 'welcome' %}">Click to Begin</a></div>
                 </div>
             </div>
         </div>
@@ -49,31 +52,31 @@
                 <div class="slideshow-container">
                     <div class="mySlides fade">
                         <div class="numbertext">1 / 5</div>
-                        <img src="/carousels/assets/carousel-1-images/kenzie-kraft-Oh81uk8CoEA-unsplash.jpg" style="width:100%" height="600px">
+                        <img src="{% static 'css/carousels/assets/carousel-1-images/kenzie-kraft-Oh81uk8CoEA-unsplash.jpg'%}" style="width:100%" height="600px">
                         <div class="text"><span class="highlight">Take a look...</span></div>
                     </div>
 
                     <div class="mySlides fade">
                         <div class="numbertext">2 / 5</div>
-                        <img src="/carousels/assets/carousel-1-images/game-plan.jpg" style="width:100%" height="600px">
+                        <img src="{% static 'css/carousels/assets/carousel-1-images/game-plan.jpg'%}" style="width:100%" height="600px">
                         <div class="text"><span class="highlight">You're not alone in this path to healing, learning, and enlightenment.</span></div>
                     </div>
 
                     <div class="mySlides fade">
                         <div class="numbertext">3 / 5</div>
-                        <img src="/carousels/assets/carousel-1-images/strength.jpg" style="width:100%" height="600px">
+                        <img src="{% static 'css/carousels/assets/carousel-1-images/strength.jpg'%}" style="width:100%" height="600px">
                         <div class="text"><span class="highlight">Self-care is not selfish.</span></div>
                     </div>
 
                     <div class="mySlides fade">
                         <div class="numbertext">4 / 5</div>
-                        <img src="/carousels/assets/carousel-1-images/chuttersnap-cGXdjyP6-NU-unsplash (1).jpg" style="width:100%" height="600px">
+                        <img src="{% static 'css/carousels/assets/carousel-1-images/chuttersnap-cGXdjyP6-NU-unsplash (1).jpg'%}" style="width:100%" height="600px">
                         <div class="text"><span class="highlight">Hope, Resiliency, & Inner-Reflection</span></div>
                     </div>
 
                     <div class="mySlides fade">
                         <div class="numbertext">5 / 5</div>
-                        <img src="/carousels/assets/carousel-1-images/trauma.jpg" style="width:100%" height="600px">
+                        <img src="{% static 'css/carousels/assets/carousel-1-images/trauma.jpg'%}" style="width:100%" height="600px">
                         <div class="text"><span class="highlight">A journey filled with self-discovery and awareness.</span></div>
                     </div>
 
@@ -114,5 +117,6 @@
             </div>  
         </div>
     </div>
+{% endblock %}
 </body>
 </html>
