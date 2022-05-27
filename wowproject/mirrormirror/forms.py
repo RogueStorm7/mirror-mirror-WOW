@@ -36,7 +36,6 @@ class CategoryForm(forms.ModelForm):
         self.fields['catname'].label = 'Category Name:'
 
 
-# NEED TO FIX!!!! 
 class ResourceReviewForm(forms.ModelForm):
     widget1 = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     user_name = models.CharField(max_length=255)
