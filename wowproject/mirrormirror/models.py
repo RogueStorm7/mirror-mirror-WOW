@@ -28,7 +28,7 @@ class Resource(models.Model):
         return f'{self.resource_name} - {self.title}'
 
 
-# NEED TO FIX!!!!
+
 class ResourceReview(models.Model):
     """Review on a Resource"""
     review = models.TextField(max_length=4000)
