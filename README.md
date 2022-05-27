@@ -60,7 +60,7 @@ Run one of the following commands depending on the type of operating system you 
 > MacOS, Linux, ChromeOS:  
 > `source venv/bin/activate`  
 > Windows:  
-> `venv/Scripts/activate`
+> `venv\Scripts\activate.bat`
 
 ---
 
@@ -81,7 +81,7 @@ Run the following commands:
 ```
 
 ```bash
-  pip freeze > requirements.txt
+  requirements.txt
 ```
 
 ---
@@ -152,13 +152,14 @@ Run the following command:
 - [Sierra Nash](https://github.com/sasianan19)👑
 
 ## Screenshots
-<img src="readme-images/Screenshot landing page.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot landing.png" style="width: 200px; height:200px;"></div></p>
 <img src="readme-images/Screenshot welcome.png" style="width: 200px; height:200px;"></div></p>
 <img src="readme-images/Screenshot stats.png" style="width: 200px; height:200px;"></div></p>
 <img src="readme-images/Screenshot resources.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot reviews-comments.png" style="width: 200px; height:200px;"></div></p>
 
-## Demo Walk-through Video
-[Walk-through]()
+<!-- ## Demo Walk-through Video
+[Walk-through]() -->
 ## Live Site🪞
 [Mirror-Mirror](http://127.0.0.1:5500/wowproject/mirrormirror/templates/home.html)
 
