@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirror Mirror - Resources</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    <!-- Custom CSS -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/html_style.css'%}"/>
+</head>
+{% block site_content %}
+<body class="body">
+    <div class="container-fluid px-0">
+        <div class="row g-0">
+            <div class="col">
+                <!-- Bootstrap for dropdown; links populate on page instead of taking to new page or site -->
+                <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="{% url 'resources' %}">
+                            <img src="{% static 'css/tiny-mirror.png'%}" alt="A small cartoon mirror">
+                        </a>
+                
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'mental health' %}">Mental Health</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'justice impacted' %}">Justice Impacted</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'physical health' %}">Physical Health</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'overall wellness' %}">Overall Wellness</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'national resources' %}">National Resources</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'zipcode' %}">Zipcode</a>
+                                </li>
+                            </ul>
+                        </div>                 
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <br>
+
+        <div class="row g-0">
+            <div class="col">
+                <!-- resources populate here -->
+                {% if resources_present %}
+                    <div class="content-box">
+                        {% for resource in resources %}
+                            <div class="item">
+                                <p>{{ resource.title }}</p>
+                                <p>{{ resource.resource_name }}</p>
+                                <p>{{ resource.description }}</p>
+                                <p>{{ resource.resource_address }}</p>
+                                <p>{{ resource.resource_city }}</p>
+                                <p>{{ resource.resource_state }}</p>
+                                <p>{{ resource.resource_zip }}</p>
+                                <p>{{ resource.resource_phone }}</p>
+                                <a href="{{ resource.resource_url }}" target="_blank">{{ resource.resource_url }}</a>
+                                <p>{{ resource.resource_date }}</p>
+                                <hr>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>There are no resources.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row g-0">
+            <div class="col button-div">
+                <button type="button" class="button"><a href="{% url 'display' %}">Leave Review/Comment</a></button>
+            </div>
+        </div>
+
+        <div class="row g-0">
+            <div class="col">
+                <a href="{% url 'home' %}" class="home-link">Home</a>
+            </div>
+        </div>
+    </div>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>

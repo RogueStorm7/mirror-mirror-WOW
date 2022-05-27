@@ -21,29 +21,29 @@
                 <!-- Bootstrap for dropdown; links populate on page instead of taking to new page or site -->
                 <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="{% url 'resources' %}">
                             <img src="{% static 'css/tiny-mirror.png'%}" alt="A small cartoon mirror">
                         </a>
                 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Mental Health</a>
+                                    <a class="nav-link" href="{% url 'mental health' %}">Mental Health</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Justice Impacted</a>
+                                    <a class="nav-link" href="{% url 'justice impacted' %}">Justice Impacted</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Physical Health</a>
+                                    <a class="nav-link" href="{% url 'physical health' %}">Physical Health</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Overall Wellness</a>
+                                    <a class="nav-link" href="{% url 'overall wellness' %}">Overall Wellness</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">National Resources</a>
+                                    <a class="nav-link" href="{% url 'national resources' %}">National Resources</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Zipcode</a>
+                                    <a class="nav-link" href="{% url 'zipcode' %}">Zipcode</a>
                                 </li>
                             </ul>
                         </div>                 

@@ -20,7 +20,7 @@
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Add Resource Review
                     </button>
-                    <form class="dropdown-menu p-4" method="POST" action="{% url 'resourcereview_list' %}" >
+                    <form class="dropdown-menu p-4" method="POST">
                         <div class="mb-3">
                             {% csrf_token %}
                             {{ resource_review_form }}
@@ -74,21 +74,23 @@
                 <h1 class="page-title">Reviews</h1>
                 <div class="display-box">
                     <!-- Where content populates-->
-                    {% for review in resourcereview %}
-                       <div>
-                           <p style="color:#808080">User Resource Review # {{ forloop.counter }} | {{ resourcereview.resourcereview_date}}</p>
-                           <p> {{ resourcereview.resourcereview_username }} </p>
-                           <p> {{ resourcereview.resourcereview_rating }} </p>      
-                           <p> {{ resourcereview.resourcereview_comment }} </p>      
+                    {% for review in resource_reviews %}
+                       <div class="row">
+                           <p style="color:#808080">User Resource Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
+                           <a href="{% url 'edit resource review' review.id %}"> {{ review.user_name }} </a>
+                           <p> {{ review.resource }} </p>
+                           <p>Rating: {{ review.stars }} </p>      
+                           <p> {{ review.review }} </p>      
                            <br>
                            <br>
                        </div>
                    {% endfor %}
-<!-- ADD HR + ROW TO SEPARATE RESOURCE REVIEWS FROM WEBSITE REVIEWS! -->
-                   {% for review in reviews %}
-                       <div>
-                           <p style="color:#808080">User Website Review # {{ forloop.counter }} | {{ review.created_at}}</p>
+                    <hr>
+                   {% for review in site_reviews %}
+                       <div class="row">
+                           <p style="color:#808080">User Website Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
                            <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
+                           <p>Rating: {{review.stars }} </p>
                            <p> {{ review.review }} </p>      
                            <br>
                            <br>
@@ -102,7 +104,7 @@
                 <div class="display-box">
                    {% for comment in comments %}
                        <div>
-                           <p style="color:#808080">User Comment # {{ forloop.counter }} | {{ comment.created_at}}</p>
+                           <p style="color:#808080">User Comment # {{ forloop.revcounter }} | {{ comment.created_at}}</p>
                            <a href="{% url 'updateordelete' comment.id %}"> {{ comment.commentor_name }} </a>
                            <p> {{ comment.description }} </p>      
                            <br>

@@ -33,6 +33,12 @@
     text-align: center;
 }
 /*----------------------------*/
+/* Static styles across resource links */
+/* Styles content div where resource info displays */
+.content-box {
+    margin-left: 100px;
+    border-style: solid white;
+}
 
 
 /* HOME.html */
