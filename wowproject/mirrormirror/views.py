@@ -36,7 +36,126 @@ class ResourcesView(View):
             # render resources.html page
             template_name='resources.html',
         )
-    
+
+
+class MentalHealthView(View):
+    def get(self, request):
+        resources_present = Resource.objects.exists()
+        resources = Resource.objects.filter(category_tags='2').values()
+        context = {
+        'resources_present': resources_present,
+        'resources': resources,
+        }
+        return render(request, 'mentalhealth.html', context)
+
+
+# Code for admin pages to create, view, edit, and delete resources
+def index(request):
+    resources_present = Resource.objects.exists()
+    resources = Resource.objects.all()
+    context = {
+        'resources_present': resources_present,
+        'resources': resources,
+    }
+    return render(request, 'resourcetemppage.html', context)
+
+def resource_create(request):
+    if request.method == 'GET':
+        context = {
+            'form': ResourceForm(),
+        }
+        return render(request, 'resourcecreate.html', context)
+    else:
+        form = ResourceForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('resourcetemppage')
+        context = {
+            'form': form,
+        }
+        return render(request, 'resourcecreate.html', context)
+ 
+def resource_edit(request, pk):
+    resource = Resource.objects.get(pk=pk)
+ 
+    if request.method == 'GET':
+        context = {
+            'resource': resource,
+            'form': ResourceForm(instance=resource)
+        }
+        return render(request, 'resourceedit.html', context)
+    else:
+        form = ResourceForm(request.POST, instance=resource)
+        if form.is_valid():
+            form.save()
+            return redirect('resourcetemppage')
+ 
+        context = {
+            'resource': resource,
+            'form': form,
+        }
+        return render(request, 'resourceedit.html', context)
+ 
+def resource_delete(request, pk):
+    resource = Resource.objects.get(pk=pk)
+ 
+    if request.method == 'GET':
+        context = {
+            'resource': resource,
+            'form': DeleteResourceForm(instance=resource)
+        }
+ 
+        return render(request, 'resourceedit.html', context)
+    else:
+        resource.delete()
+        return redirect('resourcetemppage')    
+
+
+# Resource categories
+class CategoryListView(View):
+    def get(self, request):
+        categorys = Category.objects.all().order_by('-id')
+        form = CategoryForm()
+
+        return render(
+            request=request, template_name = 'categorycreate.html', context = {'categorys': categorys, 'form': form}
+        )
+
+    def post(self, request):
+        '''POST the data in the from submitted by the user, creating a new comment in the list'''
+        form=CategoryForm(request.POST)
+        if form.is_valid():
+            category_catname = form.cleaned_data['catname']
+            Category.objects.create(catname=category_catname)
+
+        # "redirect" to the comment page
+        return redirect('category_list')
+
+
+class CategoryDetailView(View):
+    def get(self, request, category_id):
+        '''...'''
+        category = Category.objects.get(id=category_id)
+        form = CategoryForm(initial={'catname': category.catname})
+        
+        return render(
+            request=request, template_name='categoryupdate.html', context={'form':form, 'id': category_id})
+    def post(self, request, category_id):
+        '''Update or delete the specific task based on what the user submitted in the form'''
+        category = Category.objects.filter(id=category_id)
+        if 'save' in request.POST:
+            form = CategoryForm(request.POST)
+            if form.is_valid():
+                category_catname = form.cleaned_data['catname']
+                category.update(catname=category_catname)
+                category.update
+
+        elif 'delete' in request.POST:
+            category.delete()
+
+        # "redirect" to the list page
+        return redirect('category_list')
+
 
 # gets & posts Website Reviews + Comments; displays them in designated divs via templating on same html page
 def get_and_post(request):
@@ -103,10 +222,6 @@ class WebsiteReviewDetailView(View):
 
         # "redirect" to the list page
         return redirect('display')
-    
-
-
-
 
 
 class UserCommentDetailView(View):
@@ -136,114 +251,6 @@ class UserCommentDetailView(View):
 
 
 
-
-
-
-
-
-def index(request):
-    resources_present = Resource.objects.exists()
-    resources = Resource.objects.all()
-    context = {
-        'resources_present': resources_present,
-        'resources': resources,
-    }
-    return render(request, 'resourcetemppage.html', context)
-
-def resource_create(request):
-    if request.method == 'GET':
-        context = {
-            'form': ResourceForm(),
-        }
-        return render(request, 'resourcecreate.html', context)
-    else:
-        form = ResourceForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect('resourcecreate.html')
-        context = {
-            'form': form,
-        }
-        return render(request, 'resourcecreate.html', context)
- 
-def resource_edit(request, pk):
-    resource = Resource.objects.get(pk=pk)
- 
-    if request.method == 'GET':
-        context = {
-            'resource': resource,
-            'form': ResourceForm(instance=resource)
-        }
-        return render(request, 'resourceedit.html', context)
-    else:
-        form = ResourceForm(request.POST, instance=resource)
-        if form.is_valid():
-            form.save()
-            return redirect('resourcetemppage.html')
- 
-        context = {
-            'resource': resource,
-            'form': form,
-        }
-        return render(request, 'resourceedit.html', context)
- 
-def resource_delete(request, pk):
-    resource = Resource.objects.get(pk=pk)
- 
-    if request.method == 'GET':
-        context = {
-            'resource': resource,
-            'form': DeleteResourceForm(instance=resource)
-        }
- 
-        return render(request, 'delete.html', context)
-    else:
-        resource.delete()
-        return redirect('index')    
-
-
-class CategoryListView(View):
-    def get(self, request):
-        categorys = Category.objects.all().order_by('-id')
-        form = CategoryForm()
-
-        return render(
-            request=request, template_name = 'categorycreate.html', context = {'categorys': categorys, 'form': form}
-        )
-
-    def post(self, request):
-        '''POST the data in the from submitted by the user, creating a new comment in the list'''
-        form=CategoryForm(request.POST)
-        if form.is_valid():
-            category_catname = form.cleaned_data['catname']
-            Category.objects.create(catname=category_catname)
-
-        # "redirect" to the comment page
-        return redirect('category_list')
-
-class CategoryDetailView(View):
-    def get(self, request, category_id):
-        '''...'''
-        category = Category.objects.get(id=category_id)
-        form = CategoryForm(initial={'catname': category.catname})
-        
-        return render(
-            request=request, template_name='categoryupdate.html', context={'form':form, 'id': category_id})
-    def post(self, request, category_id):
-        '''Update or delete the specific task based on what the user submitted in the form'''
-        category = Category.objects.filter(id=category_id)
-        if 'save' in request.POST:
-            form = CategoryForm(request.POST)
-            if form.is_valid():
-                category_catname = form.cleaned_data['catname']
-                category.update(catname=category_catname)
-                category.update
-
-        elif 'delete' in request.POST:
-            category.delete()
-
-        # "redirect" to the list page
-        return redirect('category_list')
 
 
 

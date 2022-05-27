@@ -12,35 +12,39 @@
 {% block site_content %}
 <body>
     <div class="container-fluid">
+        <div class="buttons-container">
+            <a class="button edit" href="{% url 'resource create' %}">Add Resource</a>
+        </div>
         <h1>Resource List</h1>
+        
         {% if resources_present %}
             <div class="items-container">
                 {% for resource in resources %}
-                    <div class="item">
-                        <p>{{ resource.title }}</p>
-                        <p>{{ resource.resource_name }}</p>
-                        <p>{{ resource.description }}</p>
-                        <p>{{ resource.resource_address }}</p>
-                        <p>{{ resource.resource_city }}</p>
-                        <p>{{ resource.resource_state }}</p>
-                        <p>{{ resource.resource_zip }}</p>
-                        <p>{{ resource.resource_phone }}</p>
-                        <p>{{ resource.resource_url }}</p>
-                        <p>{{ resource.resource_date }}</p>
-                        <p>{{ resource.category_tags }}</p>
-                    
-                        <div class="resource-info"></div>
+                        <div class="item">
+                            <p>{{ resource.title }}</p>
+                            <p>{{ resource.resource_name }}</p>
+                            <p>{{ resource.description }}</p>
+                            <p>{{ resource.resource_address }}</p>
+                            <p>{{ resource.resource_city }}</p>
+                            <p>{{ resource.resource_state }}</p>
+                            <p>{{ resource.resource_zip }}</p>
+                            <p>{{ resource.resource_phone }}</p>
+                            <p>{{ resource.resource_url }}</p>
+                            <p>{{ resource.resource_date }}</p>
+                            {% for tag in resource.category_tags.all %}
+                                <p>{{ tag.catname }}</p>
+                            {% endfor %}
 
-                        <div class="buttons-container">
-                            <a class="button edit" href="{% url 'resourcereview' resource.id %}">Review</a>
-                            <a class="button edit" href="{% url 'resource edit' resource.id %}">Edit</a>
-                            <a class="button delete" href="{% url 'resource edit' resource.id %}">Delete</a>
+                            <div class="resource-info"></div>
+
+                            <div class="buttons-container">
+                                <a class="button edit" href="{% url 'resource edit' resource.id %}">Edit</a>
+                                <a class="button delete" href="{% url 'resource delete' resource.id %}">Delete</a>
+                                <br>
+                            </div>
                             <br>
                             <br>
                         </div>
-                        <br>
-                        <br>
-                    </div>
                 {% endfor %}
             </div>
         {% else %}

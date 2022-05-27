@@ -75,7 +75,7 @@
                 <div class="display-box">
                     <!-- Where content populates-->
                     {% for review in resourcereview %}
-                       <div>
+                       <div class="row">
                            <p style="color:#808080">User Resource Review # {{ forloop.counter }} | {{ resourcereview.resourcereview_date}}</p>
                            <p> {{ resourcereview.resourcereview_username }} </p>
                            <p> {{ resourcereview.resourcereview_rating }} </p>      
@@ -84,9 +84,9 @@
                            <br>
                        </div>
                    {% endfor %}
-<!-- ADD HR + ROW TO SEPARATE RESOURCE REVIEWS FROM WEBSITE REVIEWS! -->
+                    <hr>
                    {% for review in reviews %}
-                       <div>
+                       <div class="row">
                            <p style="color:#808080">User Website Review # {{ forloop.counter }} | {{ review.created_at}}</p>
                            <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
                            <p> {{ review.review }} </p>      

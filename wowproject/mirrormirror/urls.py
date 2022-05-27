@@ -9,12 +9,10 @@ urlpatterns = [
     path("ace-quiz/", AceQuizView.as_view(), name='ace-quiz'),
     path("score_stats/", ScoreStatsView.as_view(), name='score_stats'),
     path('resources/', ResourcesView.as_view(), name='resources'),
+    path('mentalhealth/', MentalHealthView.as_view(), name='mentalhealth'),
     path('review_comment/', get_and_post, name='display'),
-
     path('comment/<int:comment_id>', UserCommentDetailView.as_view(), name='updateordelete'),
-
     path('websitereview/<int:review_id>', WebsiteReviewDetailView.as_view(), name='editsitereview'),
-
 
     path('resourcereview/', ResourceReviewListView.as_view(), name='resourcereview_list'),
     # path('resourcereview/<int:id>',rate,name='resourcereview_'),
