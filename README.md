@@ -60,7 +60,7 @@ Run one of the following commands depending on the type of operating system you 
 > MacOS, Linux, ChromeOS:  
 > `source venv/bin/activate`  
 > Windows:  
-> `venv\Scripts\activate.bat`
+> `venv/Scripts/activate`
 
 ---
 
@@ -81,7 +81,7 @@ Run the following commands:
 ```
 
 ```bash
-  requirements.txt
+  pip freeze > requirements.txt
 ```
 
 ---
