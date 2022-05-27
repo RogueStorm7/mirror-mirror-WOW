@@ -12,6 +12,7 @@
 - [WireFrame](#wireframe)
 - [Demo Walk-through Video](#demo-walk-through-video)
 - [Mirror-Mirror Engineers](#mirror-mirror-engineers)
+- [Screenshots](#screenshots)
 - [Technology-Used](#technology-used)
 
 # Description:
@@ -59,7 +60,7 @@ Run one of the following commands depending on the type of operating system you 
 > MacOS, Linux, ChromeOS:  
 > `source venv/bin/activate`  
 > Windows:  
-> `venv\Scripts\activate.bat`
+> `venv/Scripts/activate`
 
 ---
 
@@ -80,7 +81,7 @@ Run the following commands:
 ```
 
 ```bash
-  requirements.txt
+  pip freeze > requirements.txt
 ```
 
 ---
@@ -149,6 +150,13 @@ Run the following command:
 - [Asha Maurya](https://github.com/jtc21am)👑
 - [Mianta McKnight](https://github.com/RogueStorm7)👑
 - [Sierra Nash](https://github.com/sasianan19)👑
+
+## Screenshots
+<img src="readme-images/Screenshot landing page.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot welcome.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot stats.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot resources.png" style="width: 200px; height:200px;"></div></p>
+
 ## Demo Walk-through Video
 [Walk-through]()
 ## Live Site🪞
