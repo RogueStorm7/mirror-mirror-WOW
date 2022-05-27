@@ -37,6 +37,7 @@
 /* Styles content div where resource info displays */
 .content-box {
     margin-left: 100px;
+    border-style: solid white;
 }
 
 

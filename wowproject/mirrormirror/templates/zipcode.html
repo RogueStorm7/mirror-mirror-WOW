@@ -51,12 +51,22 @@
         </div>
         <br>
 
+       <div class="row g-0">
+           <div class="row">
+               <div id="zip-search">
+                   <p>Please enter a zipcode then press Enter:</p>
+                <form action="{% url 'zip search results' %}" method="get">
+                    <input name="q" type="text" placeholder="Enter zipcode...">
+                  </form>
+               </div>
+           </div>
+       </div>
         <div class="row g-0">
             <div class="col">
                 <!-- resources populate here -->
-                {% if resources_present %}
+                <div class="content-box">
                     <div class="content-box">
-                        {% for resource in resources %}
+                        {% for resource in object_list %}
                             <div class="item">
                                 <p>{{ resource.title }}</p>
                                 <p>{{ resource.resource_name }}</p>
@@ -72,9 +82,7 @@
                             </div>
                         {% endfor %}
                     </div>
-                {% else %}
-                    <p>There are no resources.</p>
-                {% endif %}
+                </div>
             </div>
         </div>
 

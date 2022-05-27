@@ -2,9 +2,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from mirrormirror.forms import *
 from mirrormirror.models import *
+from django.db.models import Q
   
 
 # Create your views here.
@@ -47,6 +48,60 @@ class MentalHealthView(View):
         'resources': resources,
         }
         return render(request, 'mentalhealth.html', context)
+
+class JusticeImpactedView(View):
+    def get(self, request):
+        resources_present = Resource.objects.exists()
+        resources = Resource.objects.filter(category_tags='3').values()
+        context = {
+        'resources_present': resources_present,
+        'resources': resources,
+        }
+        return render(request, 'justiceimpacted.html', context)
+
+class PhysicalHealthView(View):
+    def get(self, request):
+        resources_present = Resource.objects.exists()
+        resources = Resource.objects.filter(category_tags='4').values()
+        context = {
+        'resources_present': resources_present,
+        'resources': resources,
+        }
+        return render(request, 'physicalhealth.html', context)
+
+class OverallWellnessView(View):
+    def get(self, request):
+        resources_present = Resource.objects.exists()
+        resources = Resource.objects.filter(category_tags='5').values()
+        context = {
+        'resources_present': resources_present,
+        'resources': resources,
+        }
+        return render(request, 'overallwellness.html', context)
+        
+class NationalResourcesView(View):
+    def get(self, request):
+        resources_present = Resource.objects.exists()
+        resources = Resource.objects.filter(category_tags='6').values()
+        context = {
+        'resources_present': resources_present,
+        'resources': resources,
+        }
+        return render(request, 'nationalresources.html', context)
+
+class ZipcodeView(TemplateView):
+    template_name = 'zipcode.html'
+
+class ZipResultsView(ListView):
+    model = Resource
+    template_name = 'zipcode.html'
+
+    def get_queryset(self):  
+        query = self.request.GET.get("q")
+        object_list = Resource.objects.filter(
+            Q(resource_zip__icontains=query) 
+        )
+        return object_list
 
 
 # Code for admin pages to create, view, edit, and delete resources
@@ -160,29 +215,44 @@ class CategoryDetailView(View):
 # gets & posts Website Reviews + Comments; displays them in designated divs via templating on same html page
 def get_and_post(request):
     if request.method == 'GET':
-        reviews = WebsiteReview.objects.all().order_by('-id')
+        resource_reviews = ResourceReview.objects.all().order_by('-id')
+        site_reviews = WebsiteReview.objects.all().order_by('-id')
         comments = Comment.objects.all().order_by('-id')
+        resource_review_form = ResourceReviewForm()
         website_review_form = WebsiteReviewForm()
         comment_form = CommentForm()
 
         context = {
-            'reviews': reviews, 
+            'resource_reviews': resource_reviews,
+            'resource_review_form': resource_review_form,
+            'site_reviews': site_reviews, 
             'website_review_form': website_review_form,
             'comments': comments, 
             'comment_form': comment_form,
         }
         return render(request, 'reviews_comments.html', context)
+    resource_review_form = ResourceReviewForm()
     website_review_form = WebsiteReviewForm()
     comment_form = CommentForm()
     if request.method == 'POST':
         if 'widget1' in request.POST:
+            resource_review_form = ResourceReviewForm(request.POST)
+            if resource_review_form.is_valid():
+                resourcereview_review = resource_review_form.cleaned_data['review']
+                resourcereview_user_name = resource_review_form.cleaned_data['user_name']
+                resourcereview_stars = resource_review_form.cleaned_data['stars']
+                resourcereview_resource = resource_review_form.cleaned_data['resource']
+                ResourceReview.objects.create(review=resourcereview_review, user_name=resourcereview_user_name, stars=resourcereview_stars, resource=resourcereview_resource)
+                return redirect('display')
+        if 'widget2' in request.POST:
             website_review_form = WebsiteReviewForm(request.POST)
             if website_review_form.is_valid():
                 websitereview_review = website_review_form.cleaned_data['review']
                 websitereview_user_name = website_review_form.cleaned_data['user_name']
-                WebsiteReview.objects.create(review=websitereview_review, user_name=websitereview_user_name)
+                website_review_stars = website_review_form.cleaned_data['stars']
+                WebsiteReview.objects.create(review=websitereview_review, user_name=websitereview_user_name, stars=website_review_stars)
                 return redirect('display')
-        if 'widget2' in request.POST:
+        if 'widget3' in request.POST:
             comment_form = CommentForm(request.POST)
             if comment_form.is_valid():
                 comment_description = comment_form.cleaned_data['description']
@@ -190,19 +260,53 @@ def get_and_post(request):
                 Comment.objects.create(description=comment_description, commentor_name=comment_commentor_name)
                 return redirect('display')
     context = {
-        'reviews': reviews,
-        'comments': comments,
-        'website_review_form': website_review_form,
-        'comment_form': comment_form,
-    }
+            'resource_reviews': resource_reviews,
+            'resource_review_form': resource_review_form,
+            'site_reviews': site_reviews, 
+            'website_review_form': website_review_form,
+            'comments': comments, 
+            'comment_form': comment_form,
+        }
     return render(request, 'reviews_comments.html', context=context)
+
+
+
+class ResourceReviewDetailView(View):
+    def get(self, request, review_id):
+        '''GET the detail view of the Comment to modify it'''
+        review = ResourceReview.objects.get(id=review_id)
+        form = ResourceReviewForm(initial={'review': review.review, 'user_name': review.user_name, 'stars': review.stars, 'resource': review.resource})
+        
+        return render(
+            request=request, template_name='resourcereview_update.html', context={'form':form, 'id': review_id})
+
+    def post(self, request, review_id):
+        '''Update or delete the specific task based on what the user submitted in the form'''
+        review = ResourceReview.objects.filter(id=review_id)
+        if 'save' in request.POST:
+            form = ResourceReviewForm(request.POST)
+            if form.is_valid():
+                resource_review = form.cleaned_data['review']
+                user_name = form.cleaned_data['user_name']
+                resource = form.cleaned_data['resource']
+                stars = form.cleaned_data['stars']
+                review.update(review=resource_review)
+                review.update(user_name=user_name)
+                review.update(resource=resource)
+                review.update(stars=stars)
+
+        elif 'delete' in request.POST:
+            review.delete()
+
+        # "redirect" to the list page
+        return redirect('display')
 
 
 class WebsiteReviewDetailView(View):
     def get(self, request, review_id):
         '''GET the detail view of the Comment to modify it'''
         review = WebsiteReview.objects.get(id=review_id)
-        form = WebsiteReviewForm(initial={'review': review.review, 'user_name': review.user_name})
+        form = WebsiteReviewForm(initial={'review': review.review, 'user_name': review.user_name, 'stars': review.stars})
         
         return render(
             request=request, template_name='websitereview_update.html', context={'form':form, 'id': review_id})
@@ -214,8 +318,10 @@ class WebsiteReviewDetailView(View):
             if form.is_valid():
                 website_review = form.cleaned_data['review']
                 user_name = form.cleaned_data['user_name']
+                stars = form.cleaned_data['stars']
                 review.update(review=website_review)
                 review.update(user_name=user_name)
+                review.update(stars=stars)
 
         elif 'delete' in request.POST:
             review.delete()
