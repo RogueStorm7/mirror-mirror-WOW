@@ -65,30 +65,28 @@
             <div class="col">
                 <!-- resources populate here -->
                 <div class="content-box">
-                    <div class="content-box">
-                        {% for resource in object_list %}
-                            <div class="item">
-                                <p>{{ resource.title }}</p>
-                                <p>{{ resource.resource_name }}</p>
-                                <p>{{ resource.description }}</p>
-                                <p>{{ resource.resource_address }}</p>
-                                <p>{{ resource.resource_city }}</p>
-                                <p>{{ resource.resource_state }}</p>
-                                <p>{{ resource.resource_zip }}</p>
-                                <p>{{ resource.resource_phone }}</p>
-                                <a href="{{ resource.resource_url }}" target="_blank">{{ resource.resource_url }}</a>
-                                <p>{{ resource.resource_date }}</p>
-                                <hr>
-                            </div>
-                        {% endfor %}
-                    </div>
+                    {% for resource in object_list %}
+                        <div class="item">
+                            <p>{{ resource.title }}</p>
+                            <p>{{ resource.resource_name }}</p>
+                            <p>{{ resource.description }}</p>
+                            <p>{{ resource.resource_address }}</p>
+                            <p>{{ resource.resource_city }}</p>
+                            <p>{{ resource.resource_state }}</p>
+                            <p>{{ resource.resource_zip }}</p>
+                            <p>{{ resource.resource_phone }}</p>
+                            <a href="{{ resource.resource_url }}" target="_blank">{{ resource.resource_url }}</a>
+                            <p>{{ resource.resource_date }}</p>
+                            <hr>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
         <div class="row g-0">
             <div class="col button-div">
-                <button type="button" class="button"><a href="{% url 'display' %}">Leave Review/Comment</a></button>
+                <button type="button" class="button"><a href="{% url 'display' %}" class="link">Leave Review/Comment</a></button>
             </div>
         </div>
 

@@ -32,6 +32,10 @@
             </div>
 
             <div class="col">
+                <h1 class="page-title">Reviews</h1>
+            </div>
+
+            <div class="col">
                 <div class="dropdown" id="website-review-btn">
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                         Add Website Review
@@ -64,54 +68,60 @@
                     </form>
                 </div>
             </div>
+
+            <div class="col">
+                <h1 class="page-title">Comments</h1>
+            </div>
+
             <div class="col" id="home-btn">
                 <button type="button"><a href="{% url 'home' %}" class="home-link">Home</a></button>
             </div>
         </div>
 
         <div class="row">
-            <div class="col" id="reviews-border">
-                <h1 class="page-title">Reviews</h1>
-                <div class="display-box">
-                    <!-- Where content populates-->
-                    {% for review in resource_reviews %}
-                       <div class="row">
-                           <p style="color:#808080">User Resource Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
-                           <a href="{% url 'edit resource review' review.id %}"> {{ review.user_name }} </a>
-                           <p> {{ review.resource }} </p>
-                           <p>Rating: {{ review.stars }} </p>      
-                           <p> {{ review.review }} </p>      
-                           <br>
-                           <br>
-                       </div>
-                   {% endfor %}
-                    <hr>
-                   {% for review in site_reviews %}
-                       <div class="row">
-                           <p style="color:#808080">User Website Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
-                           <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
-                           <p>Rating: {{review.stars }} </p>
-                           <p> {{ review.review }} </p>      
-                           <br>
-                           <br>
-                       </div>
-                   {% endfor %}
+            <div class="col scroll-box" id="reviews-border">
+                <div class="review_comment-usage">
+                    <p class="usage-box"><i><b>The Resource Review form is for providing feedback pertaining to specific resources. <br>
+                    The Website Review form is for providing feedback on site functionality, feature suggestions, etc.</b></i></p>
                 </div>
+                <!-- Where content populates-->
+                {% for review in resource_reviews %}
+                <div>
+                    <p style="color:#808080">User Resource Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
+                    <a href="{% url 'edit resource review' review.id %}"> {{ review.user_name }} </a>
+                    <p> {{ review.resource }} </p>
+                    <p>Rating: {{ review.stars }} </p>      
+                    <p> {{ review.review }} </p>      
+                    <br>
+                    <br>
+                </div>
+                {% endfor %}
+                <hr>
+                {% for review in site_reviews %}
+                <div>
+                    <p style="color:#808080">User Website Review # {{ forloop.revcounter }} | {{ review.created_at}}</p>
+                    <a href="{% url 'editsitereview' review.id %}"> {{ review.user_name }} </a>
+                    <p>Rating: {{review.stars }} </p>
+                    <p> {{ review.review }} </p>      
+                    <br>
+                    <br>
+                </div>
+                {% endfor %}
             </div>
     
-            <div class="col" id="comments-border">
-                <h1 class="page-title">Comments</h1>
-                <div class="display-box">
-                   {% for comment in comments %}
-                       <div>
-                           <p style="color:#808080">User Comment # {{ forloop.revcounter }} | {{ comment.created_at}}</p>
-                           <a href="{% url 'updateordelete' comment.id %}"> {{ comment.commentor_name }} </a>
-                           <p> {{ comment.description }} </p>      
-                           <br>
-                           <br>
-                       </div>
-                   {% endfor %}
+            <div class="col scroll-box" id="comments-border">
+                <div class="review_comment-usage">
+                    <p class="usage-box"><i><b>The Comment form is for sharing general commentary, i.e. you feel less alone, you're happier, etc.</b></i></p>
                 </div>
+                   {% for comment in comments %}
+                    <div>
+                        <p style="color:#808080">User Comment # {{ forloop.revcounter }} | {{ comment.created_at}}</p>
+                        <a href="{% url 'updateordelete' comment.id %}"> {{ comment.commentor_name }} </a>
+                        <p> {{ comment.description }} </p>      
+                        <br>
+                        <br>
+                    </div>
+                   {% endfor %}
             </div>
         </div>
 
@@ -120,7 +130,9 @@
                 <button type="button">Contact Us</button>
             </div>
 
-            <div class="col" id="spacer-div"></div>
+            <div class="col" id="spacer-div">
+
+            </div>        
         </div>
     </div>
 <!-- JavaScript Bundle with Popper -->

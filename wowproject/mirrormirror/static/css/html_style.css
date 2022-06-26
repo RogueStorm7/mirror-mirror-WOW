@@ -10,6 +10,11 @@
     padding-top: 10px;
     color: black;
 }
+/* Removes hyperlink underline & blue color in buttons */
+.link {
+    text-decoration: none;
+    color: black;
+}
 /* "Home" link */
 .home-link {
     text-decoration: none;
@@ -39,7 +44,10 @@
     margin-left: 100px;
     border-style: solid white;
 }
-
+/* Styles display boxes with a scrollbar */
+.scroll-box {
+    overflow: auto;
+}
 
 /* HOME.html */
 /* Styling for image with button overlay */
@@ -189,13 +197,22 @@
     border-style: inset;
     border-color: darkorchid;
     font-size: 17px;
-    width: 1100px;
+    width: 900px;
     margin: 0 auto;
 }
 /*----------------------------*/
 
 
 /* REVIEWS_COMMENTS.html */
+.review_comment-usage {
+    text-align: center;
+}
+.usage-box {
+    border-style: dotted;
+    border-color: plum;
+    color: teal;
+    font-size: 15px;
+}
 /* Adds space between the tops of the buttons and the top of the window */
 #resource-review-btn, #website-review-btn, #add-comment-btn, #home-btn {
     margin-top: 15px;
