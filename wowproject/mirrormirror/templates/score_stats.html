@@ -13,13 +13,9 @@
 </head>
 {% block site_content %}
 <body class="body">
+    <!-- The "px-0" and "g-0" fits the image to the entire page instead of either having gaps on each side or needing to scroll horizontally to view the entire image.
+        They also edit the padding of the rows. -->
     <div class="container-fluid px-0">
-        <!-- <div class="row">
-            <div class="col">
-                 <div id="results"></div> -->
-            <!-- </div>
-        </div> --> 
-       
         <div class="row g-0">
             <div class="col">
                 <img src="{% static 'css/tree-reflect.jpg'%}" height="300px" width="100%" alt="Tree reflected in pool of water">
@@ -43,17 +39,25 @@
         </div>
 
         <div class="row g-0">
-            <div class="col-3">
-                <p class="stat-box">1 in 6 people experienced 4 or more types of ACEs.</p>
+            <div class="col">
+                <div class="stat-box">
+                    <p>1 in 6 people experienced 4 or more types of ACEs.</p>
+                </div>
             </div>
-            <div class="col-3">
-                <p class="stat-box">3x the risk of depression for those with an ACE score of 4 or higher.</p>
+            <div class="col">
+                <div class="stat-box">
+                    <p>3x the risk of depression for those with an ACE score of 4 or higher.</p>
+                </div>
             </div>
-            <div class="col-3">
-                <p class="stat-box">5 out of 10 leading causes of death are associated with ACEs.</p>
+            <div class="col">
+                <div class="stat-box">
+                    <p>5 out of 10 leading causes of death are associated with ACEs.</p>
+                </div>
             </div>
-            <div class="col-3">
-                <p class="stat-box">Preventing ACEs could reduce the # of adults with depression by as much as 44%.</p>
+            <div class="col">
+                <div class="stat-box">
+                    <p>Preventing ACEs could reduce the # of adults with depression by as much as 44%.</p>
+                </div>
             </div>
         </div>
         

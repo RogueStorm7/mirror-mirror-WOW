@@ -16,8 +16,8 @@
     <div class="container-fluid px-0">
         <div class="row g-0">
             <div class="col">
-                <!-- Bootstrap for dropdown; links populate on page instead of taking to new page or site -->
-                <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+                <!-- Bootstrap for nav; links populate on page instead of taking to new page or site -->
+                <nav class="navbar navbar-expand-sm" style="background-color: #e3f2fd;">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="{% url 'resources' %}">
                             <img src="{% static 'css/tiny-mirror.png'%}" alt="A small cartoon mirror">
@@ -41,7 +41,7 @@
                                     <a class="nav-link" href="{% url 'national resources' %}">National Resources</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'zipcode' %}">Zipcode</a>
+                                    <a class="nav-link active" href="{% url 'zipcode' %}">Zipcode</a>
                                 </li>
                             </ul>
                         </div>                 
@@ -55,6 +55,8 @@
            <div class="row">
                <div id="zip-search">
                    <p>Please enter a zipcode then press Enter:</p>
+                   <!-- If resource is present with matching zipcode, results are displayed. If there are no resources present with matching zipcode, nothing is displayed. 
+                        If user hits "Enter" without adding zipcode to search box, all resources are displayed. -->
                 <form action="{% url 'zip search results' %}" method="get">
                     <input name="q" type="text" placeholder="Enter zipcode...">
                   </form>

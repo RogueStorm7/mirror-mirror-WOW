@@ -360,47 +360,6 @@ class UserCommentDetailView(View):
 
 
 
-# def rate(request, id):
-#     post = Resource.objects.get(id=id)
-#     form = ResourceForm(request.POST or None)
-#     if form.is_valid():
-#         resourcereview_username = request.POST.get('name')
-#         resourcereview_stars = request.POST.get('stars')
-#         resourcereview_comment = request.POST.get('comment')
-#         review = ResourceReview(resourcereview_username=resourcereview_username, resourcereview_stars = resourcereview_stars,  resourcereview_comment=resourcereview_comment , resource=post)
-#         review.save()
-#         return redirect('index')
-
-#     form = ResourceReviewForm()
-#     context = {
-#         "form":form
-
-#     }
-#     return render(request, 'resourcereview.html',context)
-
-class ResourceReviewListView(View):
-    def get(self, request):
-        '''listing all user reviews in reverse order that they were created'''
-        review = ResourceReview.objects.all().order_by('-id')
-        form = ResourceReviewForm()
-
-        return render(
-            request=request, template_name = 'reviews_comments.html', context = {'resource_reviews': review, 'resource_review_form': form}
-        )
-
-    def post(self, request):
-        '''POST the data in the from submitted by the user, creating a new comment in the list'''
-        form=ResourceReviewForm(request.POST)
-        if form.is_valid():
-            resource_review = form.cleaned_data['resourcereview_comment']
-            resource_review_username = form.cleaned_data['resourcereview_username']
-            ResourceReview.objects.create(resourcereview_comment=resource_review, resourcereview_username=resource_review_username)
-
-        # "redirect" to the comment page
-        return redirect('resourcereview_list')
-
-
-
 
 
 
