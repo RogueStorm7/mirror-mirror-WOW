@@ -102,6 +102,7 @@ class ZipResultsView(ListView):
             Q(resource_zip__icontains=query) 
         )
         return object_list
+        
 
 
 # Code for admin pages to create, view, edit, and delete resources
