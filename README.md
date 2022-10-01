@@ -12,6 +12,7 @@
 - [WireFrame](#wireframe)
 - [Demo Walk-through Video](#demo-walk-through-video)
 - [Mirror-Mirror Engineers](#mirror-mirror-engineers)
+- [Screenshots](#screenshots)
 - [Technology-Used](#technology-used)
 
 # Description:
@@ -80,7 +81,7 @@ Run the following commands:
 ```
 
 ```bash
-  requirements.txt
+  pip freeze > requirements.txt
 ```
 
 ---
@@ -149,8 +150,17 @@ Run the following command:
 - [Asha Maurya](https://github.com/jtc21am)👑
 - [Mianta McKnight](https://github.com/RogueStorm7)👑
 - [Sierra Nash](https://github.com/sasianan19)👑
-## Demo Walk-through Video
-[Walk-through]()
+
+## Screenshots
+<img src="readme-images/Screenshot landing.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot welcome.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot quiz.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot stats.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot resources.png" style="width: 200px; height:200px;"></div></p>
+<img src="readme-images/Screenshot reviews-comments.png" style="width: 200px; height:200px;"></div></p>
+
+<!-- ## Demo Walk-through Video
+[Walk-through]() -->
 ## Live Site🪞
 [Mirror-Mirror](http://127.0.0.1:5500/wowproject/mirrormirror/templates/home.html)
 
