@@ -12,6 +12,7 @@
 {% block site_content %}
 <body>
     <div class="container">
+        <!-- Allows developer to create new category -->
         <a href="{% url 'resource create' %}">Back</a>
         <h2>Create Category</h2>
         <div class="items-container">
@@ -23,6 +24,7 @@
                         <input type="submit" name="create" value="Create" />  
                 </form>
                 <br> 
+                <!-- Lists existing categories -->
                 {% for category in categorys %}
                     <div>
                         <a href="{% url 'updateordeletecategory' category.id %}"> {{ category.catname }}  </a>

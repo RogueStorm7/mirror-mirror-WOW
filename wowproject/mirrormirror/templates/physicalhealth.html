@@ -16,8 +16,8 @@
     <div class="container-fluid px-0">
         <div class="row g-0">
             <div class="col">
-                <!-- Bootstrap for dropdown; links populate on page instead of taking to new page or site -->
-                <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+                <!-- Bootstrap for nav; links populate on page instead of taking to new page or site -->
+                <nav class="navbar navbar-expand-sm" style="background-color: #e3f2fd;">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="{% url 'resources' %}">
                             <img src="{% static 'css/tiny-mirror.png'%}" alt="A small cartoon mirror">
@@ -32,7 +32,7 @@
                                     <a class="nav-link" href="{% url 'justice impacted' %}">Justice Impacted</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'physical health' %}">Physical Health</a>
+                                    <a class="nav-link active" href="{% url 'physical health' %}">Physical Health</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'overall wellness' %}">Overall Wellness</a>
@@ -80,7 +80,7 @@
 
         <div class="row g-0">
             <div class="col button-div">
-                <button type="button" class="button"><a href="{% url 'display' %}">Leave Review/Comment</a></button>
+                <button type="button" class="button"><a href="{% url 'display' %}" class="link">Leave Review/Comment</a></button>
             </div>
         </div>
 

@@ -3,7 +3,7 @@ from django import forms
 from mirrormirror.models import *
 
 
-
+# Makes it so a form is only readable by user and cannot be edited by users
 class DisabledForm():
     def __init__(self):
         for (_, field) in self.fields.items():
@@ -11,6 +11,7 @@ class DisabledForm():
             field.widget.attrs['readonly'] = True
 
 
+# Every field in the resource form is an attribute from the Resource model and each label is the exact same as the attribute name in the model
 class ResourceForm(forms.ModelForm):
     class Meta:
         model = Resource
@@ -20,12 +21,15 @@ class ResourceForm(forms.ModelForm):
         fields = '__all__'
 
 
+# "*args" & "**kwargs" allows for the function to take in any number of arguments, whether they be keyword arguments (kwarg) or non-keyword arguments (arg)
+# the form will allow every field + attribute to be deleted, thus deleting the whole resource from the database
 class DeleteResourceForm(ResourceForm, DisabledForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         DisabledForm.__init__(self)
 
 
+# Allows developer to add, edit/update, or delete a category name- each category is related to a resource via a many-to-many relationship
 class CategoryForm(forms.ModelForm):
     catname = models.CharField(max_length=50) 
     class Meta:
@@ -36,6 +40,8 @@ class CategoryForm(forms.ModelForm):
         self.fields['catname'].label = 'Category Name:'
 
 
+# The "widget" defined in this form, WebsiteReviewForm, and CommentForm allows the developer to have multiple Django forms on one page- if widget is present, content will be displayed; 
+# otherwise, it will stay hidden. 
 class ResourceReviewForm(forms.ModelForm):
     widget1 = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     user_name = models.CharField(max_length=255)
@@ -49,6 +55,8 @@ class ResourceReviewForm(forms.ModelForm):
         (5,5)
         )
     stars = models.IntegerField(choices=rating, default=1)
+
+    # Fields are renamed below, rather than using the attribute name exactly as it is listed in the model
     class Meta:
         model = ResourceReview
         fields = ["user_name", "resource", "stars","review"]

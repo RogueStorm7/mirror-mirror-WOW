@@ -73,7 +73,7 @@ Navigate to the project root directory.
 Run the following commands:
 
 ```bash
-  pip install django
+  pip install requirements.txt
 ```
 
 ```bash

@@ -22,11 +22,12 @@
             </div>
         </div>
 
+        <!-- Each row & column separates the info on the pages for better organization + structure -->
         <div class="row">
             <div class="col">
-                <div id="img-with-button">
+                <div class="container">
                     <img src="{% static 'css/sky-mirror.png'%}" height="550px" width="300px" alt="Mirror in grass with sky, clouds, and bird overhead" />
-                    <div id="button-over-img"><button type="button" id="begin-button" class="button"><a href="{% url 'welcome' %}">Click to Begin</a></div>
+                    <button class="btn button" id="begin-button"><a href="{% url 'welcome' %}" class="link">Click to Begin</a></button>
                 </div>
             </div>
         </div>
@@ -38,16 +39,19 @@
         </div>
 
         <div class="row">
-            <div class="col" id="trigger-warning">
-                <p id="tw-box"><b>TRIGGER WARNING:</b> <br>
-                    The content ahead includes mentions of traumatic circumstances and events that may induce an intense mind/body response. <br>
-                    PLEASE BE MINDFUL OF THE LIST BELOW: <br>
-                    domestic violence, divorce & family split, substance abuse/addiction, child abuse, rape/molestation, poverty, incarceration</p>
+            <div class="col">
+                <div id="tw-box">
+                    <p id="trigger-warning"><b>TRIGGER WARNING:</b> <br>
+                        The content ahead includes mentions of traumatic circumstances and events that may induce an intense mind/body response. <br>
+                        PLEASE BE MINDFUL OF THE LIST BELOW: <br>
+                        domestic violence, divorce & family split, substance abuse/addiction, child abuse, rape/molestation, poverty, incarceration</p>
+                </div>
             </div>
         </div>
         <br>
 
         <div class="row">
+            <!-- This is the 1st progressive healing carousel of 4. It uses JavaScript to loop through each image along with the corresponding dots in a 3-second interval -->
             <div class="col carousel">
                 <div class="slideshow-container">
                     <div class="mySlides fade">
